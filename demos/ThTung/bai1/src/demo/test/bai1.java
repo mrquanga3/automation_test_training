@@ -13,12 +13,6 @@ public class bai1 {
 		// String baseUrl = "http://demo.guru99.com/test/login.html";
 		driver.get("https://www.cmc.com.vn/");
 		driver.manage().window().maximize();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		driver.close();
 	}
 	
