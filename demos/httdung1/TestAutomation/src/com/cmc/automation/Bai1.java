@@ -9,7 +9,8 @@ public class Bai1 {
 		System.setProperty("webdriver.chrome.driver", "E:\\SeleniumWebDriver\\chromedriver.exe");
 	    WebDriver driver= new ChromeDriver();
 	    driver.get("https://cmc.com.vn/");
-	    driver.manage().window().maximize();
+	    //driver.manage().window().maximize();
+	    driver.close();	    
 
 	}
 
