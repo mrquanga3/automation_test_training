@@ -6,9 +6,15 @@ public class HocSinhGioi {
 	float c;
 	double e;
 	int tenHam (int d, int t) {
+		int g = 5;
 		System.out.println(t);
 		System.out.println(d);
-		return t+d-x;
+		if (g  >  5) {
+			System.out.println();
+		} else {
+			
+		}
+		return g + t+d-x;
 	}
 	
 	public static void main(String[] args) {
@@ -19,13 +25,19 @@ public class HocSinhGioi {
 		result = dung.tenHam(8, 9);
 		System.out.println(result);
 		
-		HocSinhGioi nem = new HocSinhGioi();
+		HocSinhGioi nem = dung;
 		nem.x = 2;
 		
 		result = dung.tenHam(5, 6);
 		System.out.println(result);
 		result = dung.tenHam(8, 9);
 		System.out.println(result);
+		
+		if (result == 9) {
+			System.out.println();
+		} else {
+			
+		}
 	}
 
 }
