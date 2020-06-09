@@ -9,7 +9,7 @@ public class TinhTong {
 	}
 @Test
     public void kiemTraTong () {
-	float result = bai1.TinhTong.sum(3.5f, 4.8f);
+	float result = TinhTong.sum(3.5f, 4.8f);
 	assertTrue(result == 8.3f);
 }
 }
