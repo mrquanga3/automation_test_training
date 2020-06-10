@@ -16,7 +16,7 @@ import org.openqa.selenium.interactions.Actions;
 
 
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+
 public class ExerciseTwo {
 
 	static WebDriver browser;
@@ -45,16 +45,15 @@ public class ExerciseTwo {
 
 	}
 
-//	@Test
+	@Test
 	public void checkBack() {
 		checkLogIn();
 		browser.navigate().back();
 		String login = browser.findElement(By.xpath("//*[@id=\"btn-user-name-desktop\"]")).getText();
-		System.out.println(login);
+		System.out.println(login + "van dang login");
 		browser.navigate().back();
 		login = browser.findElement(By.xpath("//*[@id=\"btn-user-name-desktop\"]")).getText();
-		System.out.println(login);
-
+		System.out.println(login + "van dang login");
 	}
 
 	@Test
@@ -66,7 +65,7 @@ public class ExerciseTwo {
 		action.moveToElement(hover).perform();
 		browser.findElement(By.xpath("//*[@id=\"logout_portal\"]")).click();
 
-		// check xem logout chua
+		// check logout?
 		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		boolean logout = browser.findElement(By.xpath("//li[@class='nav-item work']//a[@class='btn-log login-portal']")).isDisplayed();
 		Assert.assertTrue(logout);
@@ -78,11 +77,12 @@ public class ExerciseTwo {
 		//login 2
 		checkLogIn();
 		checklogOut();
-		browser.findElement(By.xpath("/html/body/div[4]/header/div/nav/div[2]/div/div/div/div[2]/ul/li[5]/a")).click();
-		browser.findElement(By.xpath("//*[@id=\"login_popup_id\"]/div/div/div[2]/div[2]/div[2]/div/a[2]")).click();
-//		String login2 = browser.findElement(By.xpath("//*[@id=\"btn-user-name-desktop\"]")).getText();
-//		Assert.assertEquals("ANHNEM0708", login2);
-		System.out.println("Login lai rui nha");
+		browser.findElement(By.xpath("//li[@class='nav-item work']//a[@class='btn-log login-portal']")).click();
+		browser.findElement(By.xpath("//div[@id='login_popup_id']//a[2]")).click();
+		//check login 2 ok
+		String login2 = browser.findElement(By.xpath("//*[@id=\"btn-user-name-desktop\"]")).getText();
+		Assert.assertEquals("ANHNEM0708", login2);
+		System.out.println(login2 + " Login lai rui nha");
 	}
 	
 

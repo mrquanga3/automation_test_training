@@ -44,6 +44,8 @@ public class Exercise2Java {
 		// login again
 		browser.findElement(By.xpath("//li[@class='nav-item work']//a[@class='btn-log login-portal']")).click();
 		browser.findElement(By.xpath("//div[@id='login_popup_id']//a[2]")).click();
+		String login2 = browser.findElement(By.xpath("//*[@id=\"btn-user-name-desktop\"]")).getText();
+		Assert.assertEquals("ANHNEM0708", login2);
 		System.out.println("Da login lai");
 
 	}
