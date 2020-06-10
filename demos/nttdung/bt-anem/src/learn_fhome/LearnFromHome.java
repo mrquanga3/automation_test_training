@@ -10,7 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 public class LearnFromHome {
 
 	public static void main(String[] args) throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "D:\\work\\chromedriver_win32\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "D:\\setup\\chromedriverwin32\\chromedriver.exe");
 		WebDriver anhNem = new ChromeDriver();
 		anhNem.manage().window().maximize();
 		anhNem.get("https://www.cmc.com.vn/");
