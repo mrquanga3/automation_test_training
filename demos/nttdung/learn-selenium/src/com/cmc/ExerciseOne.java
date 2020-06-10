@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class ExerciseOne {
 
 	public static void main(String[] args) throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "D:\\work\\chromedriver_win32\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", System.getenv("webdriver.chrome.driver"));
 		WebDriver anhNem = new ChromeDriver();
 		anhNem.manage().window().maximize();
 		anhNem.get("https://www.cmc.com.vn/");
