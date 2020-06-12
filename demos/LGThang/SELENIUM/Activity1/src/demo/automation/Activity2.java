@@ -26,6 +26,7 @@ public class Activity2 {
 	WebElement gg = browse.findElement(By.xpath("//div[@id='login_popup_id']//a[2]"));
 	gg.click();
 	WebElement account = browse.findElement(By.xpath("//input[@id='identifierId']"));
+	account.sendKeys("thangle123");
 	WebDriverWait wait = new WebDriverWait(browse,20);
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='password']")));
 	WebElement pass = browse.findElement(By.xpath("//input[@name='password']"));
