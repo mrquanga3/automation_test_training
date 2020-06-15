@@ -1,8 +1,10 @@
-package com.cmc.java;
-import org.junit.Test;
-import static org.junit.Assert.assertTrue;
+package com.cmc.learnjava;
 
-public class JavaTest {
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class Bai1 {
 	public float sum1(float a, float b) {
 		return a + b;
 	}
@@ -13,12 +15,14 @@ public class JavaTest {
 
 	@Test
 	public void checkResultSum1() {
-		assertTrue(sum1(7.5f, 2.55f) == 10.05f);
+		float sumActual = sum1(7.5f, 2.55f);
+		assertTrue(sumActual == 10.05f);
 	}
 
 	@Test
 	public void checkResultSum2() {
-		assertTrue(sum2(7.5f, 2.55f) == 10.05f);
+		float sumActual = sum2(7.5f, 2.55f);
+		assertTrue(sumActual == 10.05f);
 	}
-
 }
+
