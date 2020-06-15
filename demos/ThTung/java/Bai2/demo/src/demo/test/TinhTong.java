@@ -9,12 +9,15 @@ public class TinhTong {
 	int a1;
 	int b2;
 
-	public TinhTong(float i, float n) {
+	public TinhTong() {
+	}
+
+	TinhTong(float i, float n) {
 		a = i;
 		b = n;
 	}
 
-	private TinhTong(int i1, int n2) {
+	TinhTong(int i1, int n2) {
 		a1 = i1;
 		b2 = n2;
 	}
