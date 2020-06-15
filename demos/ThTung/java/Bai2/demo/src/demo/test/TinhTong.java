@@ -7,7 +7,10 @@ public class TinhTong {
 	int b2;
 
 	public TinhTong() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 76512316306f99c7a037722c99d8a032403be8b5
 	}
 
 	TinhTong(float i, float n) {
