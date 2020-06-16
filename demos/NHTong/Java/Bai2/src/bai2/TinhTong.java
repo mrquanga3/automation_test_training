@@ -33,12 +33,12 @@ public class TinhTong {
 	}
 
 	public float averageI() {
-		return (a1 + b1) / 2;
+		return (float)(a1 + b1) / 2;
 	}
 
 	public static void main(String[] avgs) {
 		TinhTong resultF = new TinhTong(3.5F, 6.5F);
-		TinhTong resultI = new TinhTong(5, 3);
+		TinhTong resultI = new TinhTong(5, 4);
 		System.out.println("Sum = " + resultF.sumF());
 		System.out.println("Sum = " + resultI.sumI());
 		System.out.println("Average = " + resultF.averageF());
