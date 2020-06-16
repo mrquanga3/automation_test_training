@@ -16,7 +16,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/Driver/Junit/hamcrest-core-1.3.jar"/>
-	<classpathentry kind="lib" path="D:/Driver/Junit/junit-4.13.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
