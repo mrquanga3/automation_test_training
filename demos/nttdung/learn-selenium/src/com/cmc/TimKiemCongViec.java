@@ -85,7 +85,7 @@ public class TimKiemCongViec {
 		/**
 		 * Filter by job 
 		 * Click to any value of the dropdown list
-		 * Expected: the selected value is not selected.
+		 * Expected: the selected value is selected.
 		 */
 		browser.findElement(By.xpath("//div[@class='search-list']//span[@class='multiselect-selected-text']")).click();
 		Random ran1 = new Random();
@@ -100,6 +100,25 @@ public class TimKiemCongViec {
 		Assert.assertTrue(check);
 		System.out.println("Chon 1");
 		
+		
+		/**
+		 * Filter by job 
+		 * Select 2 values of the dropdown list
+		 * Expected: there are 2 values that is selected.
+		 */
+		browser.findElement(By.xpath("//div[@class='search-list']//span[@class='multiselect-selected-text']")).click();
+		Random ran2 = new Random();
+		int i2 = ran2.nextInt(29);
+		int i3 = ran2.nextInt(29);
+		Thread.sleep(2000);
+		browser.findElement(By.xpath("//div[@class='btn-group open']//li[" + i2 + "]//input")).click();
+		WebElement select2Value = browser.findElement(By.xpath("//div[@class='search-list']//li[" +  i2  + "]"));
+		boolean check1 = true;
+		if (select1Value.getAttribute("class") == null || !select1Value.getAttribute("class").contains("active")) {
+		check = false;
+		}
+		Assert.assertTrue(check1);
+		System.out.println("Chon 1");
 		
 
 //		browser.findElement(By.className("multiselect-container dropdown-menu")).findElement(By.className("checkbox"));
