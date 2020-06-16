@@ -29,7 +29,7 @@ public class TinhTong {
 		return (a + b) / 2;
 	}
 
-	public int tinhTb2() {
-		return (a1 + b1) / 2;
+	public float tinhTb2() {
+		return (float)(a1 + b1) / 2;
 	}
 }
