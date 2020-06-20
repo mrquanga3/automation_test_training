@@ -2,8 +2,11 @@ package demo.automation;
 
 import java.util.concurrent.TimeUnit;
 
+<<<<<<< HEAD
 import org.junit.After;
 import org.junit.Assert;
+=======
+>>>>>>> 9a5f4f3ed1685aca4926af1f63ec4458e8ae3152
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -12,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class AppTest {
+<<<<<<< HEAD
 	static WebDriver driver;
 
 	@Before
@@ -64,4 +68,20 @@ public class AppTest {
 	public void close() {
 		driver.close();
 	}
+=======
+static WebDriver driver;
+static WebElement searchButton;
+@Before
+public void setup() {
+	driver = new ChromeDriver();
+	driver.manage().window().maximize();
+	driver.get("https://tuyendung.cmc.com.vn/");
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	searchButton = driver.findElement(By.xpath("//div[@class='search-list']//span[@class='multiselect-native-select']"));
+}
+@Test
+public void test() {
+	
+}
+>>>>>>> 9a5f4f3ed1685aca4926af1f63ec4458e8ae3152
 }
