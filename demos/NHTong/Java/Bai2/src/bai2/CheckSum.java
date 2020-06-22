@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class CheckSum {
 	TinhTong resultF = new TinhTong(3.5F, 6.5F);
-	TinhTong resultI = new TinhTong(5, 3);
+	TinhTong resultI = new TinhTong(5, 4);
 
 	@Test
 	public void checkSumF() {
@@ -14,7 +14,7 @@ public class CheckSum {
 
 	@Test
 	public void checkSumI() {
-		Assert.assertTrue(resultI.sumI() == 8);
+		Assert.assertTrue(resultI.sumI() == 9);
 	}
 
 	@Test
@@ -24,6 +24,6 @@ public class CheckSum {
 
 	@Test
 	public void checkAverageI() {
-		Assert.assertTrue(resultI.averageI() == 4);
+		Assert.assertTrue(resultI.averageI() == 4.5);
 	}
 }

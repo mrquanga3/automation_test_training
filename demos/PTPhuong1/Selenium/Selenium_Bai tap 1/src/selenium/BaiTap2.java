@@ -38,7 +38,7 @@ public class BaiTap2 {
 	Actions actions = new Actions(browser);
 	actions.moveToElement(subMenu).perform();
 	browser.findElement(By.xpath("//*[@id=\"logout_portal\"]")).click();
-	// relogin
+//	relogin
 	browser.findElement(By.xpath("//li[@class='nav-item work']//a[@class='btn-log login-portal']")).click();
 	browser.findElement(By.xpath("//div[@id='login_popup_id']//a[2]")).click();
 	Assert.assertEquals("SAURIENGJ6",
