@@ -25,11 +25,11 @@ public class TinhTong {
 		return a1 + b1;
 	}
 
-	public float tinhTb1() {
+	public float tinhTrungBinhCong1() {
 		return (a + b) / 2;
 	}
 
-	public float tinhTb2() {
-		return (float)(a1 + b1) / 2;
+	public float tinhTrungBinhCong2() {
+		return ((float)a1 + b1) / 2;
 	}
 }
