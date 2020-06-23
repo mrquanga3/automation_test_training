@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
-//import java.util.concurrent.TimeUnit;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -20,28 +19,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.io.Files;
 
-public class DocFile {
+public class Test3 {
 	static WebDriver driver;
 	
 	@BeforeClass
-	public static void pricondition() throws IOException {
-		driver = new ChromeDriver();
+	public static void main(String[] args) throws IOException {
+		ChromeDriver driver = new ChromeDriver();
 		driver.get("https://tuyendung.cmc.com.vn/");
 		driver.manage().window().maximize();
 		List<String> dulieu = Files.readLines(new File("Tong.txt"), Charset.defaultCharset());
 		String[] taikhoan = dulieu.get(0).split("\\ ");
 		System.out.print(taikhoan[0]);System.out.print(taikhoan[1]);
 		WebElement login = driver.findElement(By.xpath("//div[@class='menu-pc']//li[5]"));
-		// click đăng nhập
 		login.click();
 		WebElement gg = driver.findElement(By.xpath("//div[@id='login_popup_id']//a[2]"));
 		gg.click();
 		WebElement account = driver.findElement(By.xpath("//input[@id='identifierId']"));
-		// input account gmail
 		account.sendKeys(taikhoan[0]);
 		WebElement nextAccount = driver.findElement(By.xpath("//span[contains(text(),'p theo')]"));
 		nextAccount.click();
-		// chờ cho load hết trang
 		WebDriverWait wait = new WebDriverWait(driver, 15);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='password']")));
 
@@ -56,7 +52,6 @@ public class DocFile {
 	public void testLogin() {
 		WebDriverWait wait = new WebDriverWait(driver, 15);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btn-user-name-desktop")));
-		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		WebElement loged = driver.findElement(By.xpath("//a[@id='btn-user-name-desktop']")); //
 		System.out.println(loged.getText());
 		assertTrue(loged.getText().equalsIgnoreCase("TOMTEPKOREA"));
