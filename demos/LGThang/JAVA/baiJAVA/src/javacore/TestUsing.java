@@ -1,5 +1,7 @@
 package javacore;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,34 +14,60 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TestUsing {
 	WebDriver driver;
 
 	@Before
 	public void setup() {
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver_win32_v83\\chromedriver.exe");
 		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://tuyendung.cmc.com.vn/");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MICROSECONDS);
-	}
-
-	@After
-	public void close() {
-		driver.close();
+		String account = null;
+		try {
+			account = readUsernamePassword();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String username = account.split(";")[0];
+		String password = account.split(";")[1];
+		WebElement login = driver.findElement(By.xpath("//div[@class='menu-pc']//li[5]"));
+		login.click();
+		WebElement lg = driver.findElement(By.xpath("//div[@id='login_popup_id']//a[2]"));
+		lg.click();
+		WebElement user = driver.findElement(By.xpath("//input[@id='identifierId']"));
+		user.sendKeys(username);
+		WebElement nextUser = driver.findElement(By.xpath("//span[contains(text(),'p theo')]"));
+		nextUser.click();
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='password']")));
+		WebElement pass = driver.findElement(By.xpath("//input[@name='password']"));
+		System.out.println(pass.getAttribute("value"));
+		pass.sendKeys(password);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'p theo')]")));
+		WebElement nextpass = driver.findElement(By.xpath("//span[contains(text(),'p theo')]"));
+		nextpass.click();
 	}
 
 	@Test
-	public void login() throws IOException {
-		String account = readUsernamePassword();
-		String username = account.split(";")[0];
-		String password = account.split(";")[1];
-		driver.get(
-				"https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin");
-		driver.findElement(By.xpath("//input[@id='identifierId']")).sendKeys(username);
+	public void login()  {
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btn-user-name-desktop")));
+		WebElement loged = driver.findElement(By.xpath("//a[@id='btn-user-name-desktop']")); //
+		System.out.println(loged.getText());
+		assertTrue(loged.getText().equalsIgnoreCase("lethang098194@gmail.com"));
+		
 	}
 
 	String readUsernamePassword() throws IOException {
-		File file = new File("src\\javacore\\Test.txt");
+		File file = new File("D:/Test.txt");
 		FileInputStream IP = new FileInputStream(file);
 		InputStreamReader inputStreamReader = new InputStreamReader(IP);
 		BufferedReader reader = new BufferedReader(inputStreamReader);
@@ -50,5 +78,10 @@ public class TestUsing {
 		}
 		reader.close();
 		return account;
+	}
+
+	@After
+	public void close() {
+		driver.close();
 	}
 }
