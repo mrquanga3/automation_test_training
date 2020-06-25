@@ -1,11 +1,20 @@
-package demo.automation;
-public class Alert {
+package SeleniumBasic;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class Activity4 {
 	static WebDriver driver;
 
-	@Before
+	@BeforeClass
 	public void setup() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\lgthang\\Desktop\\chromedriver_win32_V83\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver_win32_v83\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("http://demo.guru99.com/test/delete_customer.php");
@@ -32,8 +41,9 @@ public class Alert {
 		 */
 	}
 
-	
-	  @After public void close() {
-		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		 driver.close(); }
+	@AfterClass
+	public void close() {
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.close();
+	}
 }

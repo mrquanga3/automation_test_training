@@ -1,4 +1,4 @@
-package javacore;
+package JavaBasic;
 
 import static org.junit.Assert.assertTrue;
 
@@ -9,20 +9,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class TestUsing {
 	WebDriver driver;
 
-	@Before
+	@BeforeClass
 	public void setup() {
 		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver_win32_v83\\chromedriver.exe");
 		driver = new ChromeDriver();
@@ -57,13 +57,13 @@ public class TestUsing {
 	}
 
 	@Test
-	public void login()  {
+	public void login() {
 		WebDriverWait wait = new WebDriverWait(driver, 15);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btn-user-name-desktop")));
 		WebElement loged = driver.findElement(By.xpath("//a[@id='btn-user-name-desktop']")); //
 		System.out.println(loged.getText());
 		assertTrue(loged.getText().equalsIgnoreCase("lethang098194@gmail.com"));
-		
+
 	}
 
 	String readUsernamePassword() throws IOException {
@@ -80,7 +80,7 @@ public class TestUsing {
 		return account;
 	}
 
-	@After
+	@AfterClass
 	public void close() {
 		driver.close();
 	}

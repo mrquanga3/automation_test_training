@@ -1,4 +1,4 @@
-package javacore;
+package JavaBasic;
 
 public class AppTest {
 	float a;

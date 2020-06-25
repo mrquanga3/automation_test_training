@@ -1,7 +1,6 @@
-package javacore;
+package JavaBasic;
 
 public class TinhTong {
-
 	public float sum(float a, float b) {
 		return a + b;
 	}
@@ -16,5 +15,4 @@ public class TinhTong {
 			System.out.println("Test Fail!");
 		}
 	}
-
 }

@@ -1,12 +1,7 @@
-package demo.automation;
-
-import static org.junit.Assert.assertTrue;
+package SeleniumBasic;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,11 +9,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-public class Activity2 {
+public class Activity3 {
 	static WebDriver browse;
 
-	@Before
+	@BeforeClass
 	public void pre() {
 		browse = new ChromeDriver();
 		browse.get("https://tuyendung.cmc.com.vn/");
@@ -45,14 +44,16 @@ public class Activity2 {
 	public void testLogin() {
 		WebDriverWait wait = new WebDriverWait(browse, 5);
 		WebElement loged = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btn-user-name-desktop")));
-		assertTrue(loged.getText().equalsIgnoreCase("123456aA@"));
+		Assert.assertTrue(loged.getText().equalsIgnoreCase("123456aA@"));
 	}
+
+
 
 	@Test
 	public void testBack() {
 		browse.navigate().back();
 		WebElement loged = browse.findElement(By.id("btn-user-name-desktop"));
-		assertTrue(loged.getText().equalsIgnoreCase("CHINHLAANHNHE"));
+		Assert.assertTrue(loged.getText().equalsIgnoreCase("CHINHLAANHNHE"));
 	}
 
 	@Test
@@ -75,7 +76,7 @@ public class Activity2 {
 		ggs.click();
 	}
 
-	@After
+	@AfterClass
 	public void close() {
 		browse.close();
 	}
