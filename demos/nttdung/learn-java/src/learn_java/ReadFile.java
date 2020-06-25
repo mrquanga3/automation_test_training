@@ -1,5 +1,6 @@
 package learn_java;
 
+<<<<<<< HEAD
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -43,3 +44,29 @@ public class ReadFile {
 
 }
 
+=======
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class ReadFile {
+	
+	public static class FileInputStreamExample2 {
+	    public static void main(String args[]) throws IOException {
+	        FileInputStream fin = null;
+	        try {
+	            fin = new FileInputStream("Login.txt");
+	            int i = 0;
+	            while ((i = fin.read()) != -1) {
+	                System.out.print((char) i);
+	            }
+	            fin.close();
+	        } catch (Exception e) {
+	            System.out.println(e);
+	        } finally {
+	            fin.close();
+	        }
+	    }
+	}
+
+}
+>>>>>>> c10d9e6... commit tam
