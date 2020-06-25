@@ -92,4 +92,5 @@ public class Bai2 {
 	public static void EndTest() {
 		driver.quit();
 	}
+
 }
