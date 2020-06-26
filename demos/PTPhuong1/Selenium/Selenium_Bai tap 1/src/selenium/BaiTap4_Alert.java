@@ -5,6 +5,8 @@ import ch.qos.logback.core.joran.action.Action;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +17,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
 public class BaiTap4_Alert {
-	public static void main(String[] args) {
+	@Test
+	public void Alert() {
 		System.setProperty("webdriver.chrome.driver","D:\\Driver\\chromedriver_win32\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 //		Mo duong dan
@@ -29,11 +32,12 @@ public class BaiTap4_Alert {
         		
         // di chuyen toi alert va get text   
         String alertMessage= alert.getText();		
-        		
+        Assert.assertEquals(alertMessage, "Do you really want to delete this Customer?");		
         // in alert message	
         System.out.println(alertMessage);
         
         // Accepting alert		
-        alert.accept();
+//        alert.accept();
+//        driver.close();
 	}
 }

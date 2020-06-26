@@ -13,11 +13,12 @@ public class BaiTap4_Popup {
 		WebDriver driver = new ChromeDriver();
 		// Mo duong dan
 		driver.get("http://demo.guru99.com/popup.php");
-
+		driver.manage().window().maximize();
 		driver.findElement(By.xpath("/html/body/p/a")).click();
 
 		// get key cua popup cha
 		String MainWindow = driver.getWindowHandle();
+		System.out.println(MainWindow);
 
 		// get list tat ca popup dc mo
 		Set<String> listPopup = driver.getWindowHandles();
@@ -43,7 +44,7 @@ public class BaiTap4_Popup {
 				driver.close();
 			}
 		}
-		// Switching ve thang popup cha
+		// Switching ve popup cha
 		driver.switchTo().window(MainWindow);
 	}
 }
