@@ -22,7 +22,7 @@ public class HomePage extends Login {
 		login();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		String txtlogin = driver.findElement(By.xpath("//*[@id=\"btn-user-name-desktop\"]")).getText();
-		assertEquals(txtlogin, "lETHANG098194");
+		assertEquals(txtlogin, "LETHANG098194");
 	}
 
 	@Test
