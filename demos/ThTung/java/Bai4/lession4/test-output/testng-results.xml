@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2020-06-29T10:17:32 ICT" name="Default suite" finished-at="2020-06-29T10:17:54 ICT" duration-ms="21461">
+    <groups>
+    </groups>
+    <test started-at="2020-06-29T10:17:32 ICT" name="Default test" finished-at="2020-06-29T10:17:54 ICT" duration-ms="21461">
+      <class name="com.java.lession4.HomePage">
+        <test-method is-config="true" signature="BeforeTest()[pri:0, instance:com.java.lession4.HomePage@4c1d9d4b]" started-at="2020-06-29T10:17:32 ICT" name="BeforeTest" finished-at="2020-06-29T10:17:40 ICT" duration-ms="7880" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeTest -->
+        <test-method signature="testLogin()[pri:0, instance:com.java.lession4.HomePage@4c1d9d4b]" started-at="2020-06-29T10:17:40 ICT" name="testLogin" finished-at="2020-06-29T10:17:48 ICT" duration-ms="7945" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLogin -->
+        <test-method signature="testLogout()[pri:0, instance:com.java.lession4.HomePage@4c1d9d4b]" started-at="2020-06-29T10:17:48 ICT" name="testLogout" finished-at="2020-06-29T10:17:49 ICT" duration-ms="1410" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLogout -->
+        <test-method is-config="true" signature="AfterTest()[pri:0, instance:com.java.lession4.HomePage@4c1d9d4b]" started-at="2020-06-29T10:17:49 ICT" name="AfterTest" finished-at="2020-06-29T10:17:54 ICT" duration-ms="4173" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AfterTest -->
+      </class> <!-- com.java.lession4.HomePage -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
