@@ -1,8 +1,4 @@
 package selenium;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import ch.qos.logback.core.joran.action.Action;
-
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
@@ -36,7 +32,7 @@ public class BaiTap4_Alert {
         // in alert message	
         System.out.println(alertMessage);
         
-        // Accepting alert		
+//        // Accepting alert		
 //        alert.accept();
 //        driver.close();
 	}
