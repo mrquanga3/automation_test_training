@@ -1,11 +1,11 @@
-package Test;
+package recruitment.cmc.com.vn.test;
 
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
-import pages.Recruitments;
+import recruitment.cmc.com.pages.Recruitments;
 
 public class TestRecruiments extends TestTemplate {
 	@Test
@@ -19,7 +19,7 @@ public class TestRecruiments extends TestTemplate {
 	public void testHoverAndClickRec() {
 		Recruitments tHaC = new Recruitments(driver);
 		String text = tHaC.hoverAndClick();
-		assertEquals(text, "Môi trường làm việc");
+		assertEquals(text, "Môi trư�?ng làm việc");
 
 	}
 }

@@ -1,4 +1,4 @@
-package pages;
+package recruitment.cmc.com.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,8 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Recruitments {
-	WebDriver driver;
+public class Recruitments extends BasePage {
 
 	@FindBy(xpath = "(//li[@class='nav-item job']//a[contains(text(),'Vá»? CMC')])[2]")
 	WebElement buttonAboutCMC;
@@ -18,10 +17,8 @@ public class Recruitments {
 	@FindBy(xpath = "//div[@id='page-heading']")
 	WebElement textConfirm;
 
-	// constructor method
 	public Recruitments(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+		super(driver);
 	}
 
 	public String Hover() {
@@ -32,9 +29,8 @@ public class Recruitments {
 
 	public String hoverAndClick() {
 		Actions action = new Actions(driver);
-        action.moveToElement(buttonAboutCMC).build().perform();
-        buttonWorkEnviroment.click();
-        return textConfirm.getText();
-
+		action.moveToElement(buttonAboutCMC).build().perform();
+		buttonWorkEnviroment.click();
+		return textConfirm.getText();
 	}
 }

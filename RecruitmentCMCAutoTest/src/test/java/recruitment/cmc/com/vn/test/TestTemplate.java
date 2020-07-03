@@ -1,4 +1,4 @@
-package Test;
+package recruitment.cmc.com.vn.test;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;

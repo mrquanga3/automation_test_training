@@ -1,4 +1,6 @@
-package Test;
+package recruitment.cmc.com.vn.test;
+
+import static recruitment.cmc.com.settings.URL.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -6,8 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-
-import static variables.URL.*;
 
 public class BrowserSetting {
 	public WebDriver BrowserSettings() {

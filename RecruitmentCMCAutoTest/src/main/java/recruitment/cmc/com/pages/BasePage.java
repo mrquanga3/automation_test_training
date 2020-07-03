@@ -1,4 +1,4 @@
-package pages;
+package recruitment.cmc.com.pages;
 
 import java.util.concurrent.TimeUnit;
 
@@ -7,15 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class PageTemplate {
+public class BasePage {
 	WebDriver driver;
-
-	// constructor method
-	public PageTemplate(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-	}
-
 	@FindBy(xpath = "//li[@class='nav-item work']//a[@class='btn-log login-portal']")
 	WebElement buttonLogin;
 
@@ -36,6 +29,11 @@ public class PageTemplate {
 
 	@FindBy(xpath = "//*[@id='btn-user-name-desktop']")
 	WebElement buttonConfirm;
+
+	public BasePage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
 
 	public String login() {
 		buttonLogin.click();

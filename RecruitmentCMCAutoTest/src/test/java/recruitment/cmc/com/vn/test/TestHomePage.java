@@ -1,11 +1,11 @@
-package Test;
+package recruitment.cmc.com.vn.test;
 
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
-import pages.HomePage;
+import recruitment.cmc.com.pages.HomePage;
 
 public class TestHomePage extends TestTemplate {
 	@Test

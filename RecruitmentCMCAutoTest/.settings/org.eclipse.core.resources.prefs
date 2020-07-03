@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/main/java/pages/HomePage.java=UTF-8
-encoding//src/main/java/pages/PageTemplate.java=UTF-8
-encoding//src/main/java/pages/Recruitments.java=UTF-8
-encoding//src/test/java/Test/TestRecruiments.java=UTF-8
+encoding//src/main/java/recruitment/cmc/com/pages/BasePage.java=UTF-8
+encoding//src/main/java/recruitment/cmc/com/pages/HomePage.java=UTF-8
+encoding//src/main/java/recruitment/cmc/com/pages/Recruitments.java=UTF-8
+encoding//src/test/java/recruitment/cmc/com/vn/test/TestRecruiments.java=UTF-8
