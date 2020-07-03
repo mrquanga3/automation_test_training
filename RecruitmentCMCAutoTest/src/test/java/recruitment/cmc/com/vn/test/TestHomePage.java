@@ -12,6 +12,5 @@ public class TestHomePage extends TestTemplate {
 	public void testLogin() {
 		HomePage tlg = new HomePage(driver);
 		assertEquals(tlg.login(), "TUNGTHSE02891");
-
 	}
 }
