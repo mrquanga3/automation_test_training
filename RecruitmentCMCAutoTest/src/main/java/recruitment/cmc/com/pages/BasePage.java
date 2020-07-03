@@ -21,7 +21,7 @@ public class BasePage {
 	@FindBy(xpath = "//*[contains(text(),'Tiếp theo')]")
 	WebElement nextAcc;
 
-	@FindBy(xpath = "//input[@name='password']")
+	@FindBy(name = "password")
 	WebElement passTextBox;
 
 	@FindBy(xpath = "//*[contains(text(),'Tiếp theo')]")
