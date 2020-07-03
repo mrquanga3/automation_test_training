@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="2" total="3" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="11533" started-at="2020-07-03T03:50:54Z" finished-at="2020-07-03T03:51:06Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="11533" started-at="2020-07-03T03:50:54Z" finished-at="2020-07-03T03:51:06Z">
+      <class name="test.TestHomePage">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:test.TestHomePage@1a84f40f]" name="setUp" is-config="true" duration-ms="10076" started-at="2020-07-03T10:50:54Z" finished-at="2020-07-03T10:51:04Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="testDisplayMenus()[pri:0, instance:test.TestHomePage@1a84f40f]" name="testDisplayMenus" duration-ms="190" started-at="2020-07-03T10:51:04Z" finished-at="2020-07-03T10:51:04Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDisplayMenus -->
+        <test-method status="PASS" signature="tearnDown()[pri:0, instance:test.TestHomePage@1a84f40f]" name="tearnDown" is-config="true" duration-ms="1238" started-at="2020-07-03T10:51:04Z" finished-at="2020-07-03T10:51:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearnDown -->
+      </class> <!-- test.TestHomePage -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
