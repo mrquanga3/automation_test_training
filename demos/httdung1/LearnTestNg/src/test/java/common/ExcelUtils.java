@@ -64,8 +64,7 @@ public class ExcelUtils {
 	public static int getTotalRow() throws Exception {
 		try {
 			int rowCount  =  ExcelWSheet.getLastRowNum()- ExcelWSheet.getFirstRowNum();
-			return rowCount;
-			
+			return rowCount;			
 		} catch (Exception e) {
 			return 0;
 		}

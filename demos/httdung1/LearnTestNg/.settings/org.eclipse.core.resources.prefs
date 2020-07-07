@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/test/java/pages/BasePage.java=UTF-8
 encoding//src/test/java/pages/HomePage.java=UTF-8
-encoding//src/test/java/test/TestAboutCmcPage.java=UTF-8
 encoding//src/test/java/test/TestHomePage.java=UTF-8
 encoding//src/test/java/test/TestLoginPage.java=UTF-8
+encoding//src/test/java/test/TestRecruiments.java=UTF-8
 encoding/MenuList.txt=UTF-8
