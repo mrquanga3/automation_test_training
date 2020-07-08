@@ -4,10 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-<<<<<<< HEAD
-=======
 import org.openqa.selenium.firefox.FirefoxDriver;
->>>>>>> ef5add2... Dung update browser setting
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
