@@ -20,10 +20,12 @@ public class BrowserSetting {
 		System.out.print("BROWSER_NAME=" + browser);
 		// Check if parameter passed from TestNG is 'firefox'
 		if (browser.equalsIgnoreCase("firefox")) {
+			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		}
 		// Check if parameter passed as 'chrome'
 		else if (browser.equalsIgnoreCase("chrome")) {
+			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		}
 //		//Check if parameter passed as 'Edge'
