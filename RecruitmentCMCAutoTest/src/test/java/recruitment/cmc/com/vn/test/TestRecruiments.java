@@ -2,7 +2,6 @@ package recruitment.cmc.com.vn.test;
 
 import static org.testng.Assert.assertEquals;
 
-import org.openqa.selenium.support.CacheLookup;
 import org.testng.annotations.Test;
 
 import recruitment.cmc.com.pages.Recruitments;
