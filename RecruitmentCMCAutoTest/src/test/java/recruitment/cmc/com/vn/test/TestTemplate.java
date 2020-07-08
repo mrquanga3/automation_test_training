@@ -9,7 +9,7 @@ public class TestTemplate {
 	WebDriver driver;
 
 	@BeforeClass
-	public void setup() {
+	public void setup() throws Exception {
 		bs = new BrowserSetting();
 		driver = bs.BrowserSettings();
 	}
