@@ -16,10 +16,6 @@ import static recruitment.cmc.com.settings.URL.*;
 public class BrowserSetting {
 	public WebDriver BrowserSettings() throws Exception {
 		WebDriver driver;
-<<<<<<< HEAD
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-=======
 		String browser = System.getenv("BROWSER_NAME");
 		if (browser == null){
 			browser = "chrome";
@@ -27,15 +23,10 @@ public class BrowserSetting {
 		System.out.print("BROWSER_NAME=" + browser);
 		// Check if parameter passed from TestNG is 'firefox'
 		if (browser.equalsIgnoreCase("firefox")) {
-			// create firefox instance
-			System.setProperty("webdriver.gecko.driver", System.getenv("webdriver.firefox.driver"));
 			driver = new FirefoxDriver();
 		}
 		// Check if parameter passed as 'chrome'
 		else if (browser.equalsIgnoreCase("chrome")) {
-			// set path to chromedriver.exe
-			System.setProperty("webdriver.chrome.driver", System.getenv("webdriver.chrome.driver"));
-			// create chrome instance
 			driver = new ChromeDriver();
 		}
 //		//Check if parameter passed as 'Edge'
@@ -50,7 +41,6 @@ public class BrowserSetting {
 			throw new Exception("BROWSER IS INCORRECT: " + browser + "IS NOT SUPPORTED. " + "BROWSERS ARE SUPPORTED INCLUDING: CHROME AND FIREFOX ");
 		}
 
->>>>>>> ef5add2... Dung update browser setting
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
