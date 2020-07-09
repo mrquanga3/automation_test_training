@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -28,13 +29,10 @@ public class BrowserSetting {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		}
-//		//Check if parameter passed as 'Edge'
-//				else if(browser.equalsIgnoreCase("Edge")){
-//					//set path to Edge.exe
-//					System.setProperty("webdriver.edge.driver",".\\MicrosoftWebDriver.exe");
-//					//create Edge instance
-//					driver = new EdgeDriver();
-//				}
+		//Check if parameter passed as 'IE'
+				else if(browser.equalsIgnoreCase("ie")){
+					driver = new InternetExplorerDriver();
+				}
 		else {
 			// If no browser passed throw exception
 			throw new Exception("BROWSER IS INCORRECT: " + browser + "IS NOT SUPPORTED. " + "BROWSERS ARE SUPPORTED INCLUDING: CHROME AND FIREFOX ");
