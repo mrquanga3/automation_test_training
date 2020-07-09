@@ -31,11 +31,12 @@ public class BrowserSetting {
 		}
 		//Check if parameter passed as 'IE'
 				else if(browser.equalsIgnoreCase("ie")){
+					WebDriverManager.iedriver().setup();
 					driver = new InternetExplorerDriver();
 				}
 		else {
 			// If no browser passed throw exception
-			throw new Exception("BROWSER IS INCORRECT: " + browser + "IS NOT SUPPORTED. " + "BROWSERS ARE SUPPORTED INCLUDING: CHROME AND FIREFOX ");
+			throw new Exception("BROWSER IS INCORRECT: " + browser + " IS NOT SUPPORTED. " + "BROWSERS ARE SUPPORTED INCLUDING: CHROME AND FIREFOX ");
 		}
 
 		driver.manage().deleteAllCookies();
