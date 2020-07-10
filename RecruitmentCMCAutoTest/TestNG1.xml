@@ -3,7 +3,7 @@
 <suite name="TestSuite" thread-count="4" parallel="methods" >
 <test name="testCMC">
 <classes>
-<class name="recruitment.cmc.com.vn.test.TestRecruiments">
+<class name="recruitment.cmc.com.vn.test.TestHomePage">
 </class>
 </classes>
 </test>
