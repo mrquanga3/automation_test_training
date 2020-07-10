@@ -4,8 +4,11 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
 	WebDriver driver;
@@ -15,25 +18,31 @@ public class BasePage {
 	@FindBy(xpath = "//*[@id='login_popup_id']//a[@href='/login-google']")
 	WebElement buttonGoogle;
 
-	@FindBy(xpath = "//input[@id='identifierId']")
+	@FindBy(xpath = "//input[@autocomplete='username']")
 	WebElement accTextBox;
 
-	@FindBy(xpath = "//*[contains(text(),'Tiếp theo')]")
+	@FindBy(xpath = "//div[@id='identifierNext']")
 	WebElement nextAcc;
 
 	@FindBy(name = "password")
 	WebElement passTextBox;
 
-	@FindBy(xpath = "//*[contains(text(),'Tiếp theo')]")
+	@FindBy(xpath = "//div[@id='passwordNext']")
 	WebElement nextPass;
 
 	@FindBy(xpath = "//*[@id='btn-user-name-desktop']")
 	WebElement buttonConfirm;
 
+	@FindBy(xpath = "//a[@id='logout_portal']")
+	WebElement buttonLogOut;
+
+	@FindBy(xpath = "//a[@id='btn-user-name-desktop']")
+	WebElement buttonProfile;
+
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-	}
+	}	
 
 	public String login() {
 		buttonLogin.click();
@@ -47,5 +56,14 @@ public class BasePage {
 		nextPass.click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		return buttonConfirm.getText();
+	}
+
+	public String logOut() {
+		Actions action = new Actions(driver);
+		action.moveToElement(buttonProfile).perform();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.visibilityOf(buttonLogOut)).click();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		return buttonLogin.getText();
 	}
 }
