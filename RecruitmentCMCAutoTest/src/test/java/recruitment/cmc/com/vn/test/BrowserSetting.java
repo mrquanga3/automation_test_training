@@ -30,8 +30,8 @@ public class BrowserSetting {
 			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions firefoxOptions = new FirefoxOptions();
 			if (HEADLESS) {
-//				options.setHeadless(true);
-				firefoxOptions.addArguments("--HEADLESS");
+				firefoxOptions.setHeadless(true);
+//				firefoxOptions.addArguments("--HEADLESS");
 			}
 			driver = new FirefoxDriver(firefoxOptions);
 		}
@@ -40,8 +40,8 @@ public class BrowserSetting {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions chromeOptions = new ChromeOptions();
 			if (HEADLESS) {
-//				options.setHeadless(true);
-				chromeOptions.addArguments("--HEADLESS");
+				chromeOptions.setHeadless(true);
+//				chromeOptions.addArguments("--HEADLESS");
 			}
 			driver = new ChromeDriver(chromeOptions);
 		}
@@ -55,8 +55,8 @@ public class BrowserSetting {
 			WebDriverManager.edgedriver().setup();
 			EdgeOptions edgeOptions = new EdgeOptions();
 			if (HEADLESS) {
-				// options.setHeadless(true);
-				edgeOptions.addArguments("--HEADLESS");
+				 edgeOptions.setHeadless(true);
+//				edgeOptions.addArguments("--HEADLESS");
 			}
 			driver = new EdgeDriver(edgeOptions);
 
