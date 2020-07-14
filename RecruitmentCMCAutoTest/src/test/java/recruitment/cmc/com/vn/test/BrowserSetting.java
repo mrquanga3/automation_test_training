@@ -4,7 +4,11 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -15,28 +19,51 @@ public class BrowserSetting {
 	public WebDriver BrowserSettings() throws Exception {
 		WebDriver driver;
 		String browser = System.getenv("BROWSER_NAME");
-		if (browser == null){
+		final boolean HEADLESS = true;
+
+		if (browser == null) {
 			browser = "chrome";
 		}
 		System.out.print("BROWSER_NAME=" + browser);
 		// Check if parameter passed from TestNG is 'firefox'
 		if (browser.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
+			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			if (HEADLESS) {
+				firefoxOptions.setHeadless(true);
+//				firefoxOptions.addArguments("--HEADLESS");
+			}
+			driver = new FirefoxDriver(firefoxOptions);
 		}
 		// Check if parameter passed as 'chrome'
 		else if (browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			ChromeOptions chromeOptions = new ChromeOptions();
+			if (HEADLESS) {
+				chromeOptions.setHeadless(true);
+//				chromeOptions.addArguments("--HEADLESS");
+			}
+			driver = new ChromeDriver(chromeOptions);
 		}
-		//Check if parameter passed as 'IE'
-				else if(browser.equalsIgnoreCase("ie")){
-					WebDriverManager.iedriver().setup();
-					driver = new InternetExplorerDriver();
-				}
-		else {
+		// Check if parameter passed as 'IE'
+		else if (browser.equalsIgnoreCase("ie")) {
+			WebDriverManager.iedriver().setup();
+			driver = new InternetExplorerDriver();
+		}
+		// Check if parameter passed as 'Edge'
+		else if (browser.equalsIgnoreCase("edge")) {
+			WebDriverManager.edgedriver().setup();
+			EdgeOptions edgeOptions = new EdgeOptions();
+			if (HEADLESS) {
+				 edgeOptions.setHeadless(true);
+//				edgeOptions.addArguments("--HEADLESS");
+			}
+			driver = new EdgeDriver(edgeOptions);
+
+		} else {
 			// If no browser passed throw exception
-			throw new Exception("BROWSER IS INCORRECT: " + browser + " IS NOT SUPPORTED. " + "BROWSERS ARE SUPPORTED INCLUDING: CHROME AND FIREFOX ");
+			throw new Exception("BROWSER IS INCORRECT: " + browser + " IS NOT SUPPORTED. "
+					+ "BROWSERS ARE SUPPORTED INCLUDING: CHROME AND FIREFOX AND IE AND EDGE ");
 		}
 
 		driver.manage().deleteAllCookies();
