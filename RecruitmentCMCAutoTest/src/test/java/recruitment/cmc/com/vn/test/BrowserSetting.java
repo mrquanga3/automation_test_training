@@ -19,7 +19,7 @@ public class BrowserSetting {
 	public WebDriver BrowserSettings() throws Exception {
 		WebDriver driver;
 		String browser = System.getenv("BROWSER_NAME");
-		final boolean HEADLESS = true;
+		final boolean HEADLESS = false;
 
 		if (browser == null) {
 			browser = "chrome";
@@ -55,8 +55,7 @@ public class BrowserSetting {
 			WebDriverManager.edgedriver().setup();
 			EdgeOptions edgeOptions = new EdgeOptions();
 			if (HEADLESS) {
-				 edgeOptions.setHeadless(true);
-//				edgeOptions.addArguments("--HEADLESS");
+				//edgeOptions.addArguments("--HEADLESS");
 			}
 			driver = new EdgeDriver(edgeOptions);
 
