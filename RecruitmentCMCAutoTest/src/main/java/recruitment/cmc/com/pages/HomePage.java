@@ -19,6 +19,15 @@ public class HomePage extends BasePage {
 
 	@FindAll(@FindBy(xpath = "//div[@class='col-lg-10']/ul/li/a"))
 	List<WebElement> allMenus;
+	
+	@FindBy(xpath = "/html/body/div[4]/section/section/div/div/div[1]/div[2]/img")
+	WebElement slidePageActive1;
+	
+	@FindBy(xpath = "/html/body/div[4]/section/section/div/div/div[3]/div[2]/img")
+	WebElement slidePageActive2;
+	
+	@FindBy(xpath = "/html/body/div[4]/section/section/div/div/div[2]/div[2]/img")
+	WebElement slidePageActive3;
 
 	// Get status display logo
 	public boolean isDisplayedLogo() {
@@ -108,25 +117,23 @@ public class HomePage extends BasePage {
 
 //	Next slide
 	public void NextSlide() {
-		WebElement slidePageActive1 = driver
-				.findElement(By.xpath("*[@id=\"carousel-example-generic\"]/div/div[1]/div[2]/img"));
 		driver.findElement(By.xpath("//*[@id=\"carousel-example-generic\"]/a[2]")).click();
-		WebElement slidePageActive2 = driver
-				.findElement(By.xpath("/html/body/div[4]/section/section/div/div/div[3]/div[2]/img"));
+		if (slidePageActive1.getAttribute("src") != slidePageActive2.getAttribute("src")) {
+			System.out.println("Next successfull");
+		} else {
+			System.out.println("Next fail");
+		}
 		driver.findElement(By.xpath("//*[@id=\"carousel-example-generic\"]/a[2]")).click();
-		WebElement slidePageActive3 = driver
-				.findElement(By.xpath("/html/body/div[4]/section/section/div/div/div[2]/div[2]/img"));
 	}
 
 	// Back slide
 	public void BackSlide() {
-		WebElement slidePageActive1 = driver
-				.findElement(By.xpath("*[@id=\"carousel-example-generic\"]/div/div[1]/div[2]/img"));
 		driver.findElement(By.xpath("//*[@id=\"carousel-example-generic\"]/a[1]/span[1]")).click();
-		WebElement slidePageActive2 = driver
-				.findElement(By.xpath("/html/body/div[4]/section/section/div/div/div[2]/div[2]/img"));
+		if (slidePageActive1.getAttribute("src") != slidePageActive3.getAttribute("src")) {
+			System.out.println("Back successfull");
+		} else {
+			System.out.println("Back fail");
+		}
 		driver.findElement(By.xpath("//*[@id=\"carousel-example-generic\"]/a[1]/span[1]")).click();
-		WebElement slidePageActive3 = driver
-				.findElement(By.xpath("/html/body/div[4]/section/section/div/div/div[3]/div[2]/img"));
 	}
 }
