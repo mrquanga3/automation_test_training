@@ -5,21 +5,18 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 
 import recruitment.cmc.com.settings.Constant;
 import recruitment.cmc.com.settings.ExcelUtils;
 import recruitment.cmc.com.settings.URL;
 
 public class HomePage extends BasePage {
-	@FindBy(css = ".navbar-brand.logo_cmc")
-	WebElement logo;
-
-	@FindAll(@FindBy(xpath = "//div[@class='col-lg-10']/ul/li/a"))
-	List<WebElement> allMenus;
 	
+	public HomePage(WebDriver driver) {
+		super(driver);
+	}
+
+	List<WebElement> allMenus;	
 	@FindBy(xpath = "/html/body/div[4]/section/section/div/div/div[1]/div[2]/img")
 	WebElement slidePageActive1;
 	
@@ -78,7 +75,7 @@ public class HomePage extends BasePage {
 	}
 
 	// Check if the menu in the web array exists in the file array
-	public boolean compareMenusProvider(String menu, String url, Object[][] arrFile) {
+	public boolean compareMenuInFile(String menu, String url, Object[][] arrFile) {
 		int arrlen = arrFile.length;
 		for (int i = 0; i < arrlen; i++) {
 			if ((arrFile[i][0].toString().equalsIgnoreCase(menu)) && (arrFile[i][1].toString().equalsIgnoreCase(url))) {
@@ -88,13 +85,6 @@ public class HomePage extends BasePage {
 			}
 		}
 		return false;
-	}
-
-	@FindBy(how = How.CSS, using = ".carousel-item.active .mask-banner img")
-	WebElement slideActive;
-
-	public HomePage(WebDriver driver) {
-		super(driver);
 	}
 
 	// Get src slide
