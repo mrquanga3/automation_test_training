@@ -1,3 +1,6 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=974c6eccd569336a7d1ce4c8b9107af558c63c4a
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/java/recruitment/cmc/com/pages=UTF-8
@@ -8,9 +11,5 @@ encoding//src/main/java/recruitment/cmc/com/settings=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/java/recruitment/cmc/com/vn/test=UTF-8
 encoding//src/test/java/recruitment/cmc/com/vn/test/TestRecruiments.java=UTF-8
-<<<<<<< HEAD
-encoding//src/test/java/recruitment/cmc/com/vn/test/TestSelectionAdress.java=UTF-8
-=======
 encoding/<project>=UTF-8
 encoding/src=UTF-8
->>>>>>> 974c6eccd569336a7d1ce4c8b9107af558c63c4a

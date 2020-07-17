@@ -1,7 +1,12 @@
 package recruitment.cmc.com.vn.test;
 
+import static org.testng.Assert.assertNotEquals;
+
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import recruitment.cmc.com.pages.SelectionAdress;
 
 public class TestSelectionAddress extends TestTemplate {
 	@DataProvider
@@ -20,8 +25,18 @@ public class TestSelectionAddress extends TestTemplate {
 				{ "Vinh Phúc" }, { "Yên Bái" }, { "Nước ngoài" } };
 	}
 
-	@Test(dataProvider = "dataProviderMethod")
-	public void testAdress(String address) {
-
+//	@Test(dataProvider = "dataProviderMethod")
+//	public void testAdress(String address) {
+//
+//	}
+	@Test
+	public void clickAll() {
+		SelectionAdress selectionAdress = new SelectionAdress(driver);
+		selectionAdress.allAdress();
+	}
+	@Test
+	public void Click1Nganhnghe() {
+		SelectionAdress selectionAdress = new SelectionAdress(driver);
+		selectionAdress.ClickOneNN();
 	}
 }

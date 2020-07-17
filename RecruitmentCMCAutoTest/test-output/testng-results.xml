@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2020-07-17T09:37:42 ICT" name="Default suite" finished-at="2020-07-17T09:37:58 ICT" duration-ms="16754">
+    <groups>
+    </groups>
+    <test started-at="2020-07-17T09:37:42 ICT" name="Default test" finished-at="2020-07-17T09:37:58 ICT" duration-ms="16754">
+      <class name="recruitment.cmc.com.vn.test.TestSelectionAddress">
+        <test-method is-config="true" signature="setup()[pri:0, instance:recruitment.cmc.com.vn.test.TestSelectionAddress@309e345f]" started-at="2020-07-17T09:37:42 ICT" name="setup" finished-at="2020-07-17T09:37:57 ICT" duration-ms="14878" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="clickAll()[pri:0, instance:recruitment.cmc.com.vn.test.TestSelectionAddress@309e345f]" started-at="2020-07-17T09:37:57 ICT" name="clickAll" finished-at="2020-07-17T09:37:57 ICT" duration-ms="307" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clickAll -->
+        <test-method is-config="true" signature="tearnDown()[pri:0, instance:recruitment.cmc.com.vn.test.TestSelectionAddress@309e345f]" started-at="2020-07-17T09:37:57 ICT" name="tearnDown" finished-at="2020-07-17T09:37:58 ICT" duration-ms="1479" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearnDown -->
+      </class> <!-- recruitment.cmc.com.vn.test.TestSelectionAddress -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
