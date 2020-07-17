@@ -17,12 +17,11 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M5</version>
 				<configuration>
-
 					<reportsDirectory>C:/test-reports/${timestamp}</reportsDirectory>
-					
-					<!-- Suite testng xml file to consider for test execution -->
+					<parallel>methods</parallel>
+					<threadCount>10</threadCount>
 					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml</suiteXmlFile>
+						<file>testng.xml</file>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>

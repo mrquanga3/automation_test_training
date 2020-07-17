@@ -45,7 +45,12 @@ public class NewsPage {
 		buttonNews.click();
 		news.click();
 		buttonLike.click();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return buttonLike.getText();
 	}
 	
