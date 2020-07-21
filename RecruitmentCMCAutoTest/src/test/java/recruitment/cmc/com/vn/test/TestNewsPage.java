@@ -7,21 +7,18 @@ import org.testng.annotations.Test;
 import recruitment.cmc.com.pages.NewsPage;
 
 public class TestNewsPage extends TestTemplate {
-	@Test (priority = 1)
-	public void testLikeNotLogged() {
-		NewsPage newsPage = new NewsPage(driver);
-		assertEquals("Bạn chưa đăng nhập", newsPage.pressLikeButton());
-	}
-
-	@Test (priority = 2)
-	public void testLikeLogged() {
-		NewsPage newsPage = new NewsPage(driver);
-		assertEquals("Đã thích", newsPage.pressLikeButtonLogged());
+	
+	@Test
+	public void verifyDisplayListOfNews() throws Exception{				
+		  NewsPage newsP = new NewsPage(driver);		 
+		  boolean resultTest = newsP.getStatusOfNewsList(); 
+		  assertEquals(resultTest, true);		 
 	}
 	
-	@Test (priority = 3)
-	public void testUnLikeLogged() {
-		NewsPage newsPage = new NewsPage(driver);
-		assertEquals("Yêu thích", newsPage.pressUnLikeButtonLogged());
+	@Test
+	public void verifyDisplayDetailOfNews() throws Exception{				
+		  NewsPage newsP = new NewsPage(driver);		 
+		  boolean resultTest = newsP.getStatusDetailOfNews(); 
+		  assertEquals(resultTest, true);		 
 	}
 }

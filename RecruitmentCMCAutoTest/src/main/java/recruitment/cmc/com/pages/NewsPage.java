@@ -1,15 +1,22 @@
 package recruitment.cmc.com.pages;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class NewsPage {
+import recruitment.cmc.com.settings.ExcelUtils;
+import recruitment.cmc.com.settings.NewsInfo;
+import recruitment.cmc.com.settings.URL;
+
+
+public class NewsPage extends BasePage {
 	WebDriver driver;
 	@FindBy(xpath = "(//li[@class='nav-item']//a[@href='/tin-tuc?lang=vi'])[2]")
 	WebElement buttonNews;
@@ -21,10 +28,34 @@ public class NewsPage {
 
 	@FindBy(xpath = "//button[@id='btn-like-fb']")
 	WebElement buttonLike;
-
+	
+	// Begin of dunghtt1
+	@FindBy(xpath = "//ul[@class='nav navbar-nav pull-right']//a[@href='/tin-tuc?lang=vi']")
+	WebElement linkNews;
+	
+	@FindBy(xpath = "//ul[@class='list-new']")
+	WebElement ulNews;
+	
+	@FindAll(@FindBy(xpath = "//ul[@class='list-new']/li"))
+	List<WebElement> allNews;
+	
+	@FindBy(xpath = "//div[@class='title-sp']")
+	WebElement eTitle;
+	
+	@FindBy(xpath = "//div[@class='content-detail']//div[@class='text']")
+	WebElement eSubContent;
+	
+	@FindBy(xpath = "//div[@class='img-sp']/img")
+	WebElement eImg;
+	
+	@FindBy(xpath = "//div[@class='note-sp']/span[@class='time']")
+	WebElement eTime;
+	
+	@FindAll(@FindBy(xpath = "//div[@class='bot']/div[@class='text']"))
+	List<WebElement> eDetail;
+	
 	public NewsPage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+		super(driver);
 	}
 
 	public String pressLikeButton() {
@@ -65,4 +96,81 @@ public class NewsPage {
 		return buttonLike.getText();
 	}
 	
+	// Begin of dunghtt1
+	//Get the number of menus on the job page - From file
+	public int getNumberMenuFromFile() throws Exception {
+		ExcelUtils.setExcelFile(URL.File_NewsData, "Sheet1");
+		return ExcelUtils.getTotalRow();
+	}
+
+	// Get list of menu of the job page - From file
+	public ArrayList<NewsInfo> getListMenuFromFile() throws Exception {
+		ArrayList<NewsInfo> arrNews = new ArrayList<NewsInfo>();
+		ExcelUtils.setExcelFile(URL.File_NewsData, "Sheet1");
+		int rowCount = ExcelUtils.getTotalRow();
+		for (int i = 1; i < rowCount + 1; i++) {
+			String subTitle = ExcelUtils.getCellData(i, 1);
+			String urlBanner = ExcelUtils.getCellData(i, 2);
+			String subContent = ExcelUtils.getCellData(i, 3);
+			String detailContent = ExcelUtils.getCellData(i, 4);
+			String postDate = ExcelUtils.getCellData(i, 5);
+			arrNews.add(new NewsInfo(subTitle, urlBanner, subContent, detailContent, postDate));
+		}
+		return arrNews;
+	}
+	
+	//Check display list of the News
+	public boolean getStatusOfNewsList() throws Exception {
+		
+		linkNews.click();		
+		ArrayList<NewsInfo> arrNewsFile = new ArrayList<NewsInfo>();
+		arrNewsFile = getListMenuFromFile();
+		boolean resultFind = false;
+		for (int i = 0; i < allNews.size(); i++) {
+			WebElement title = allNews.get(i).findElement(By.className("title-sp"));
+			WebElement content = allNews.get(i).findElement(By.className("text"));
+			WebElement img = allNews.get(i).findElement(By.tagName("img"));
+			String subTitle = title.getText();
+			String urlBanner = img.getAttribute("src").toString();
+			String subContent = content.getText();			
+			
+			for (int j = 0; j < arrNewsFile.size(); j++) {				
+				resultFind = arrNewsFile.get(j).subTitle.equalsIgnoreCase(subTitle);
+				resultFind = resultFind && urlBanner.contains(arrNewsFile.get(j).urlBanner);
+				resultFind = resultFind && subContent.contains(arrNewsFile.get(j).subContent);
+				if (resultFind) {
+					continue;
+				}
+			}
+		}
+		return resultFind;
+	}
+	
+	//Check display detail of the News
+	public boolean getStatusDetailOfNews() throws Exception {
+		
+		ArrayList<NewsInfo> arrNewsFile = new ArrayList<NewsInfo>();
+		arrNewsFile = getListMenuFromFile();
+		boolean resultFind = false;
+		
+		linkNews.click();
+		
+		WebElement btnDetail = allNews.get(0).findElement(By.className("read-more"));
+		btnDetail.click();
+		
+		waitForElementVisible(5,eTitle);
+		String subTitle = eTitle.getText();		
+		String urlBanner = eImg.getAttribute("src").toString();		
+		String subContent = eSubContent.getText();
+		String postDate = eTime.getText();
+		String detailContent = eDetail.get(1).getText();
+	
+		resultFind = arrNewsFile.get(0).subTitle.equalsIgnoreCase(subTitle);		
+		resultFind = resultFind && urlBanner.contains(arrNewsFile.get(0).urlBanner);		
+		resultFind = resultFind && subContent.contains(arrNewsFile.get(0).subContent);		
+		resultFind = resultFind && postDate.contains(arrNewsFile.get(0).postDate);		
+		resultFind = resultFind && detailContent.contains(arrNewsFile.get(0).detailContent);		
+		return resultFind;
+	}	
+	// End of dunghtt1
 }
