@@ -1,6 +1,5 @@
 package recruitment.cmc.com.pages;
 
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,29 +39,46 @@ public class NewsPage {
 	}
 	
 	public String pressLikeButtonLogged() {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		BasePage basepage = new BasePage(driver);
 		basepage.login();
 		buttonNews.click();
 		news.click();
-		buttonLike.click();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		buttonLike.isDisplayed();
+		if(buttonLike.getText().equalsIgnoreCase("Yêu thích")) {
+			buttonLike.click();
+			wait.until(ExpectedConditions.elementToBeClickable(buttonLike));
+			return buttonLike.getText();
+		}else {
+			return buttonLike.getText();
 		}
-		return buttonLike.getText();
 	}
 	
 	public String pressUnLikeButtonLogged() {
-		/*
-		 * BasePage basepage = new BasePage(driver); basepage.login();
-		 * buttonNews.click(); news.click(); buttonLike.click();
-		 * driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		 */
-		buttonLike.click();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		return buttonLike.getText();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		BasePage basepage = new BasePage(driver);
+		basepage.login();
+		buttonNews.click();
+		news.click();
+		buttonLike.isDisplayed();
+		if(buttonLike.getText().equalsIgnoreCase("Đã thích")) {
+			buttonLike.click();
+			wait.until(ExpectedConditions.elementToBeClickable(buttonLike));
+			return buttonLike.getText();
+		}else {
+			buttonLike.click();
+			buttonLike.click();
+			wait.until(ExpectedConditions.elementToBeClickable(buttonLike));
+			return buttonLike.getText();
+		}
 	}
 	
+	/*
+	 * public String getAPI() { // Specify the base URL to the RESTful web service
+	 * RestAssured.baseURI = "https://tuyendung.cmc.com.vn";
+	 * 
+	 * RequestSpecification httpRequest = RestAssured.given().params("idUser",
+	 * "3237", "idNews", "68"); Response response = httpRequest.request(Method.POST,
+	 * "/portal/interactnews/is_like"); return response.getBody().print(); }
+	 */
 }

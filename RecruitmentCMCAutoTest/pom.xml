@@ -65,6 +65,11 @@
 			<artifactId>webdrivermanager</artifactId>
 			<version>4.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 	</dependencies>
 	<properties>
 		<maven.compiler.source>13</maven.compiler.source>
