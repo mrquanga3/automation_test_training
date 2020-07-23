@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import recruitment.cmc.com.pages.HomePage;
 public class TestHomePage extends TestTemplate {
+	//Begin of dunghtt1============================================================
 	@Test
 	public void testTitle() {
 		HomePage homePage = new HomePage(driver);
@@ -36,6 +37,15 @@ public class TestHomePage extends TestTemplate {
 		boolean resultTest = homePage.compareMenuInFile(menu, url, arrMns);
 		assertEquals(resultTest, true);
 	}
+	
+	//Check like function on recruitment page 
+	@Test
+	public void verifyLikeFunction() throws Exception {
+		HomePage homePage = new HomePage(driver);		
+		boolean resultTest = homePage.getStatusLikeFunction();
+		assertEquals(resultTest, true);
+	}	
+	//End of dunghtt1============================================================
 
 	@Test(priority = 1)
 	public void testLogin() {

@@ -31,7 +31,7 @@ public class HomePage extends BasePage {
 	public boolean isDisplayedLogo() {
 		return logo.isDisplayed();
 	}
-
+	//Begin of dunghtt1============================================================
 	// Get title of page
 	public String getTitle() {
 		return driver.getTitle();
@@ -80,13 +80,30 @@ public class HomePage extends BasePage {
 		int arrlen = arrFile.length;
 		for (int i = 0; i < arrlen; i++) {
 			if ((arrFile[i][0].toString().equalsIgnoreCase(menu)) && (arrFile[i][1].toString().equalsIgnoreCase(url))) {
-				System.out.println(
-						"arrFile=" + arrFile + "url=" + url + "=" + arrFile[i][0].toString().equalsIgnoreCase(menu));
+				//System.out.println("arrFile=" + arrFile + "url=" + url + "=" + arrFile[i][0].toString().equalsIgnoreCase(menu));
 				return true;
 			}
 		}
 		return false;
 	}
+	
+	//Get status of function like/unlike
+	public Boolean getStatusLikeFunction() {
+		
+		boolean isLogin = getStatusLogin();
+		if (!isLogin) {
+			loginToPage("sauriengj6@gmail.com", "123456aA@");
+		}		
+		
+		// Click on 1st Hot News
+		waitForElementVisible(15, hotNew);
+		hotNew.findElements(By.tagName("li")).get(0).click();		
+		boolean isLike1 = btnLike.getText().equalsIgnoreCase("Đã thích");		
+		btnLike.click();
+		boolean isLike2 = btnLike.getText().equalsIgnoreCase("Đã thích");		
+		return (isLike1 != isLike2);		
+	}	
+	//End of dunghtt1============================================================
 
 	// Get src slide
 	public List<WebElement> EnnoughSlide() {

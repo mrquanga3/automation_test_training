@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import recruitment.cmc.com.pages.NewsPage;
 
 public class TestNewsPage extends TestTemplate {
+<<<<<<< HEAD
 	@Test 
 	public void testLikeNotLogged() {
 		NewsPage newsPage = new NewsPage(driver);
@@ -23,5 +24,20 @@ public class TestNewsPage extends TestTemplate {
 	public void testUnLikeLogged() {
 		NewsPage newsPage = new NewsPage(driver);
 		assertEquals("Yêu thích", newsPage.pressUnLikeButtonLogged());
+=======
+	
+	@Test
+	public void verifyDisplayListOfNews() throws Exception{				
+		  NewsPage newsP = new NewsPage(driver);		 
+		  boolean resultTest = newsP.getStatusOfNewsList(); 
+		  assertEquals(resultTest, true);		 
+	}
+	
+	@Test
+	public void verifyDisplayDetailOfNews() throws Exception{				
+		  NewsPage newsP = new NewsPage(driver);		 
+		  boolean resultTest = newsP.getStatusDetailOfNews(); 
+		  assertEquals(resultTest, true);		 
+>>>>>>> ccb0c075d59ddda2efdf19b86d661da2046a133e
 	}
 }

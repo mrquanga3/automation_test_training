@@ -37,6 +37,6 @@ public class TestSelectionAddress extends TestTemplate {
 	@Test
 	public void Click1Nganhnghe() {
 		SelectionAdress selectionAdress = new SelectionAdress(driver);
-		selectionAdress.ClickOneNN();
+		//selectionAdress.ClickOneNN();
 	}
 }
