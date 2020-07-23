@@ -56,7 +56,7 @@ public class BrowserSetting {
 			EdgeOptions edgeOptions = new EdgeOptions();
 			if (HEADLESS) {
 				 //edgeOptions.setHeadless(true);
-				edgeOptions.addArguments("--HEADLESS");
+				//edgeOptions.addArguments("--HEADLESS");
 			}
 			driver = new EdgeDriver(edgeOptions);
 

@@ -1,11 +1,6 @@
 package recruitment.cmc.com.pages;
-<<<<<<< HEAD
-
-=======
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
->>>>>>> ccb0c075d59ddda2efdf19b86d661da2046a133e
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +16,6 @@ import recruitment.cmc.com.settings.URL;
 
 
 public class NewsPage extends BasePage {
-	WebDriver driver;
 	@FindBy(xpath = "(//li[@class='nav-item']//a[@href='/tin-tuc?lang=vi'])[2]")
 	WebElement buttonNews;
 
@@ -109,16 +103,6 @@ public class NewsPage extends BasePage {
 		}
 	}
 	
-<<<<<<< HEAD
-	/*
-	 * public String getAPI() { // Specify the base URL to the RESTful web service
-	 * RestAssured.baseURI = "https://tuyendung.cmc.com.vn";
-	 * 
-	 * RequestSpecification httpRequest = RestAssured.given().params("idUser",
-	 * "3237", "idNews", "68"); Response response = httpRequest.request(Method.POST,
-	 * "/portal/interactnews/is_like"); return response.getBody().print(); }
-	 */
-=======
 	// Begin of dunghtt1
 	//Get the number of menus on the job page - From file
 	public int getNumberMenuFromFile() throws Exception {
@@ -196,5 +180,4 @@ public class NewsPage extends BasePage {
 		return resultFind;
 	}	
 	// End of dunghtt1
->>>>>>> ccb0c075d59ddda2efdf19b86d661da2046a133e
 }
