@@ -51,6 +51,10 @@ public class NewsPage extends BasePage {
 	@FindAll(@FindBy(xpath = "//div[@class='bot']/div[@class='text']"))
 	List<WebElement> eDetail;
 	
+	//NTTDUNG
+	@FindAll(@FindBy(xpath = "//div[@class='recent-post']"))
+	List<WebElement> recentNews;
+	
 	public NewsPage(WebDriver driver) {
 		super(driver);
 	}
@@ -183,4 +187,20 @@ public class NewsPage extends BasePage {
 		}
 	}	
 	// End of dunghtt1
+	
+	//NTTDUNG
+	// Get list of recent news
+	public ArrayList<NewsInfo> getListRecentNews() throws Exception {
+		ArrayList<NewsInfo> arrRecentNews = new ArrayList<NewsInfo>();
+		ExcelUtils.setExcelFile(URL.File_NewsData, "Sheet2");
+		int rowCount = ExcelUtils.getTotalRow();
+		for (int i = 1; i < rowCount + 1; i++) {
+			String img = ExcelUtils.getCellData(i, 2);
+			String date = ExcelUtils.getCellData(i, 3);
+			String description = ExcelUtils.getCellData(i, 4);
+			arrRecentNews.add(new NewsInfo(img, date, description));
+		}
+		return arrRecentNews;
+	}
+	
 }
