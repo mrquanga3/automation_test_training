@@ -6,6 +6,9 @@ public class NewsInfo {
 	public String subContent;
 	public String detailContent;
 	public String postDate;
+	public String img;
+	public String date;
+	public String description;
 	
 	public NewsInfo(String subTitle, String urlBanner, String subContent, String detailContent, String postDate) {
 		super();
@@ -14,7 +17,17 @@ public class NewsInfo {
 		this.subContent = subContent;
 		this.detailContent = detailContent;
 		this.postDate = postDate;
+
 	}
+	public NewsInfo(String img, String date, String description) {
+		super();
+
+		this.img = img;
+		this.date = date;
+		this.description = description;
+	}
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
