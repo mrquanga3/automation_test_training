@@ -1,5 +1,4 @@
 package recruitment.cmc.com.pages;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -105,79 +104,83 @@ public class NewsPage extends BasePage {
 	
 	// Begin of dunghtt1
 	//Get the number of menus on the job page - From file
-	public int getNumberMenuFromFile() throws Exception {
+	public int getNumberNewsFromFile() throws Exception {
 		ExcelUtils.setExcelFile(URL.File_NewsData, "Sheet1");
 		return ExcelUtils.getTotalRow();
 	}
 
 	// Get list of menu of the job page - From file
-	public ArrayList<NewsInfo> getListMenuFromFile() throws Exception {
-		ArrayList<NewsInfo> arrNews = new ArrayList<NewsInfo>();
+	public NewsInfo[] getListNewsFromFile() throws Exception {		
 		ExcelUtils.setExcelFile(URL.File_NewsData, "Sheet1");
 		int rowCount = ExcelUtils.getTotalRow();
+		
+		NewsInfo arrNews[] = new NewsInfo[rowCount];
 		for (int i = 1; i < rowCount + 1; i++) {
 			String subTitle = ExcelUtils.getCellData(i, 1);
 			String urlBanner = ExcelUtils.getCellData(i, 2);
 			String subContent = ExcelUtils.getCellData(i, 3);
 			String detailContent = ExcelUtils.getCellData(i, 4);
 			String postDate = ExcelUtils.getCellData(i, 5);
-			arrNews.add(new NewsInfo(subTitle, urlBanner, subContent, detailContent, postDate));
+			arrNews[i-1]= new NewsInfo(subTitle, urlBanner, subContent, detailContent, postDate);
 		}
 		return arrNews;
 	}
 	
 	//Check display list of the News
-	public boolean getStatusOfNewsList() throws Exception {
+	public String getStatusOfNewsList(String subTitle, String urlBanner, String subContent, String detailContent, String postDate) throws Exception {
 		
 		linkNews.click();		
-		ArrayList<NewsInfo> arrNewsFile = new ArrayList<NewsInfo>();
-		arrNewsFile = getListMenuFromFile();
 		boolean resultFind = false;
+		boolean aResult = false;
+		String errorMsg = "";
 		for (int i = 0; i < allNews.size(); i++) {
-			WebElement title = allNews.get(i).findElement(By.className("title-sp"));
-			WebElement content = allNews.get(i).findElement(By.className("text"));
-			WebElement img = allNews.get(i).findElement(By.tagName("img"));
-			String subTitle = title.getText();
-			String urlBanner = img.getAttribute("src").toString();
-			String subContent = content.getText();			
-			
-			for (int j = 0; j < arrNewsFile.size(); j++) {				
-				resultFind = arrNewsFile.get(j).subTitle.equalsIgnoreCase(subTitle);
-				resultFind = resultFind && urlBanner.contains(arrNewsFile.get(j).urlBanner);
-				resultFind = resultFind && subContent.contains(arrNewsFile.get(j).subContent);
-				if (resultFind) {
-					continue;
-				}
-			}
+			aResult = allNews.get(i).findElement(By.className("title-sp")).getText().equalsIgnoreCase(subTitle);
+			if (!aResult) errorMsg = "Tittle";
+			resultFind = aResult;
+			aResult = allNews.get(i).findElement(By.className("text")).getText().contains(subContent);
+			if (!aResult) errorMsg = "Sub Content";
+			resultFind = resultFind && aResult;
+			aResult = allNews.get(i).findElement(By.tagName("img")).getAttribute("src").toString().contains(urlBanner);
+			if (!aResult) errorMsg = "Banner";
+			resultFind = resultFind && aResult;
+			if (resultFind) return "Display correct the news";
 		}
-		return resultFind;
+		return "Do not display or display incorrect " + errorMsg + " of the news: " + subTitle;
 	}
 	
-	//Check display detail of the News
-	public boolean getStatusDetailOfNews() throws Exception {
+	//Check display detail of the 1st News
+	public String getStatusDetailOfNews() throws Exception {
 		
-		ArrayList<NewsInfo> arrNewsFile = new ArrayList<NewsInfo>();
-		arrNewsFile = getListMenuFromFile();
+		NewsInfo arrNewsFile[] = getListNewsFromFile();	
 		boolean resultFind = false;
+		boolean aResult = false;
+		String errorMsg = "";
 		
-		linkNews.click();
-		
+		linkNews.click();		
 		WebElement btnDetail = allNews.get(0).findElement(By.className("read-more"));
 		btnDetail.click();
 		
-		waitForElementVisible(5,eTitle);
-		String subTitle = eTitle.getText();		
-		String urlBanner = eImg.getAttribute("src").toString();		
-		String subContent = eSubContent.getText();
-		String postDate = eTime.getText();
-		String detailContent = eDetail.get(1).getText();
-	
-		resultFind = arrNewsFile.get(0).subTitle.equalsIgnoreCase(subTitle);		
-		resultFind = resultFind && urlBanner.contains(arrNewsFile.get(0).urlBanner);		
-		resultFind = resultFind && subContent.contains(arrNewsFile.get(0).subContent);		
-		resultFind = resultFind && postDate.contains(arrNewsFile.get(0).postDate);		
-		resultFind = resultFind && detailContent.contains(arrNewsFile.get(0).detailContent);		
-		return resultFind;
+		waitForElementVisible(5,eTitle);			
+		aResult = arrNewsFile[0].subTitle.equalsIgnoreCase( eTitle.getText());	
+		if (!aResult) errorMsg = "Tittle";
+		resultFind = aResult;
+		aResult = eImg.getAttribute("src").toString().contains(arrNewsFile[0].urlBanner);	
+		if (!aResult) errorMsg = "Banner";
+		resultFind = resultFind && aResult;
+		aResult = eSubContent.getText().contains(arrNewsFile[0].subContent);	
+		if (!aResult) errorMsg = "Sub Content";
+		resultFind = resultFind && aResult;
+		aResult = eTime.getText().contains(arrNewsFile[0].postDate);	
+		if (!aResult) errorMsg = "Post Date";
+		resultFind = resultFind && aResult;
+		aResult = eDetail.get(1).getText().contains(arrNewsFile[0].detailContent);	
+		if (!aResult) errorMsg = "Detail Content";
+		resultFind = resultFind && aResult;
+		if (resultFind) {
+			return "Display correct the news";
+		}else {
+			return "Do not display or display incorrect " + errorMsg + " of the news: " + arrNewsFile[0].subTitle;
+		}
 	}	
 	// End of dunghtt1
 }

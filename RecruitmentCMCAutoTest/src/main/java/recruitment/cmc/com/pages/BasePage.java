@@ -116,9 +116,18 @@ public class BasePage {
 	
 	public void waitForElementVisible(int seconds, WebElement elementLocator) {
 		WebDriverWait wait = new WebDriverWait(driver, seconds);
-		wait.until(ExpectedConditions.visibilityOf(elementLocator));
+		wait.until(ExpectedConditions.visibilityOf(elementLocator));		
 		wait.until(ExpectedConditions.elementToBeClickable(elementLocator));		
-	}	
+	}
+	
+	/**
+	 * Wait for Alert visible
+	 * @param seconds Wait for Alert to visible for seconds seconds	
+	 **/
+	public void waitForAlertVisible(int seconds) {
+		WebDriverWait wait = new WebDriverWait(driver, seconds);
+		wait.until(ExpectedConditions.alertIsPresent());			
+	}
 
 	// Login to page Tuyen Dung
 	public void loginToPage(String strEmail, String strPassword) {
@@ -134,6 +143,17 @@ public class BasePage {
 		txtPass.sendKeys(strPassword);
 		btnLogin.click();
 	}
+	
+	// Logout from page Tuyen Dung		
+	public void logOutThePage() { 
+		// Move to link Logout Actions action = new
+		Actions action = new Actions(driver);
+		waitForElementVisible(15, labelLogin);
+		action.moveToElement(labelLogin).build().perform(); 
+		// Click to Logout
+		waitForElementVisible(15, linkLogout);
+		linkLogout.click();
+	}		 
 	
 	// Get status login
 	public Boolean getStatusLogin() {
