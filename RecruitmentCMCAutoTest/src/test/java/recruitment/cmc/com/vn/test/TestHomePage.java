@@ -35,15 +35,21 @@ public class TestHomePage extends TestTemplate {
 		HomePage homePage = new HomePage(driver);
 		Object[][] arrMns = homePage.getDataFromFile();
 		boolean resultTest = homePage.compareMenuInFile(menu, url, arrMns);
-		assertEquals(resultTest, true);
+		assertEquals(resultTest, true, "Display wrong menu!");
+	}
+	
+	// Save case test data to object array
+	@DataProvider(name = "likedata")
+	public Object[][] likeDataprovider() throws Exception {
+		return new Object[][] { { "notLogin", "" }, { "loggedIn", "notLike" }, { "loggedIn", "liked" } };		
 	}
 	
 	//Check like function on recruitment page 
-	@Test
-	public void verifyLikeFunction() throws Exception {
+	@Test(dataProvider = "likedata")
+	public void verifyLikeFunction(String sLogin, String sLike) throws Exception {
 		HomePage homePage = new HomePage(driver);		
-		boolean resultTest = homePage.getStatusLikeFunction();
-		assertEquals(resultTest, true);
+		boolean resultTest = homePage.getStatusLikeFunction(sLogin, sLike);
+		assertEquals(resultTest, true , "Function like is fail!");
 	}	
 	//End of dunghtt1============================================================
 
