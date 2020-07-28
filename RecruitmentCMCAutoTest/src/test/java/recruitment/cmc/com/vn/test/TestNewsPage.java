@@ -28,20 +28,29 @@ public class TestNewsPage extends TestTemplate {
 	}	
 	
 	// Begin of dunghtt1	
-	// Save case test data to object array
+	// Save case test data to object array for method verifyDisplayListOfNews()
 	@DataProvider(name = "newslistdata")
 	public NewsInfo[] newsListDataprovider() throws Exception {
 		NewsPage newsP = new NewsPage(driver);				
 		return newsP.getListNewsFromFile();
 	}
 	
-	//Verify display list of the News
+	//Verify display list of the News use method newsListDataprovider()
 	@Test(dataProvider = "newslistdata")
 	public void verifyDisplayListOfNews(NewsInfo sNews) throws Exception{				
-		  NewsPage newsP = new NewsPage(driver);
+		  NewsPage newsP = new NewsPage(driver); 
 		  String resultTest = newsP.getStatusOfNewsList(sNews.subTitle, sNews.urlBanner, sNews.subContent, sNews.detailContent, sNews.postDate); 
 		  assertEquals(resultTest, "Display correct the news");		 
 	}
+	
+	//Verify display list of the News use method getListNews()
+	@Test(dataProvider = "newslistdataA")
+	public void verifyDisplayListOfNewsA(String subTitle, String urlBanner, String subContent, String detailContent, String postDate) throws Exception {
+		NewsPage newsP = new NewsPage(driver);
+		String resultTest = newsP.getStatusOfNewsList(subTitle, urlBanner, subContent, detailContent, postDate);
+		assertEquals(resultTest, "Display correct the news");
+	}
+	
 	//Verify display the detail of the News
 	@Test
 	public void verifyDisplayDetailOfNews() throws Exception{				

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.DataProvider;
 
 import recruitment.cmc.com.settings.ExcelUtils;
 import recruitment.cmc.com.settings.NewsInfo;
@@ -108,6 +109,23 @@ public class NewsPage extends BasePage {
 		ExcelUtils.setExcelFile(URL.File_NewsData, "Sheet1");
 		return ExcelUtils.getTotalRow();
 	}
+	
+	//Created @DataProvider annotation method to supply data(subTitle, urlBanner, subContent, detailContent, postDate) for test
+	@DataProvider (name = "newslistdataA")
+	public Object[][] getListNews() throws Exception {
+		ExcelUtils.setExcelFile(URL.File_NewsData, "Sheet1");
+		int rowCount = ExcelUtils.getTotalRow();
+
+		Object arrNews[][] = new Object[rowCount][5];
+		for (int i = 0; i < rowCount; i++) {
+			arrNews[i][0] = ExcelUtils.getCellData(i+1, 1);
+			arrNews[i][1] = ExcelUtils.getCellData(i+1, 2);
+			arrNews[i][2] = ExcelUtils.getCellData(i+1, 3);
+			arrNews[i][3] = ExcelUtils.getCellData(i+1, 4);
+			arrNews[i][4] = ExcelUtils.getCellData(i+1, 5);			
+		}
+		return arrNews;
+	}
 
 	// Get list of menu of the job page - From file
 	public NewsInfo[] getListNewsFromFile() throws Exception {		
@@ -127,60 +145,69 @@ public class NewsPage extends BasePage {
 	}
 	
 	//Check display list of the News
-	public String getStatusOfNewsList(String subTitle, String urlBanner, String subContent, String detailContent, String postDate) throws Exception {
-		
-		linkNews.click();		
+	public String getStatusOfNewsList(String subTitle, String urlBanner, String subContent, String detailContent,
+			String postDate) throws Exception {
+
+		linkNews.click();
 		boolean resultFind = false;
 		boolean aResult = false;
 		String errorMsg = "";
 		for (int i = 0; i < allNews.size(); i++) {
 			aResult = allNews.get(i).findElement(By.className("title-sp")).getText().equalsIgnoreCase(subTitle);
-			if (!aResult) errorMsg = "Tittle";
+			if (!aResult)
+				errorMsg = "Tittle";
 			resultFind = aResult;
 			aResult = allNews.get(i).findElement(By.className("text")).getText().contains(subContent);
-			if (!aResult) errorMsg = "Sub Content";
+			if (!aResult)
+				errorMsg = "Sub Content";
 			resultFind = resultFind && aResult;
 			aResult = allNews.get(i).findElement(By.tagName("img")).getAttribute("src").toString().contains(urlBanner);
-			if (!aResult) errorMsg = "Banner";
+			if (!aResult)
+				errorMsg = "Banner";
 			resultFind = resultFind && aResult;
-			if (resultFind) return "Display correct the news";
+			if (resultFind)
+				return "Display correct the news";
 		}
-		return "Do not display or display incorrect " + errorMsg + " of the news: " + subTitle;
+		return "Not display or display incorrect " + errorMsg + " of the news: " + subTitle;
 	}
 	
 	//Check display detail of the 1st News
 	public String getStatusDetailOfNews() throws Exception {
-		
-		NewsInfo arrNewsFile[] = getListNewsFromFile();	
+
+		NewsInfo arrNewsFile[] = getListNewsFromFile();
 		boolean resultFind = false;
 		boolean aResult = false;
 		String errorMsg = "";
-		
-		linkNews.click();		
+
+		linkNews.click();
 		WebElement btnDetail = allNews.get(0).findElement(By.className("read-more"));
 		btnDetail.click();
-		
-		waitForElementVisible(5,eTitle);			
-		aResult = arrNewsFile[0].subTitle.equalsIgnoreCase( eTitle.getText());	
-		if (!aResult) errorMsg = "Tittle";
+
+		waitForElementVisible(5, eTitle);
+		aResult = arrNewsFile[0].subTitle.equalsIgnoreCase(eTitle.getText());
+		if (!aResult)
+			errorMsg = "Tittle";
 		resultFind = aResult;
-		aResult = eImg.getAttribute("src").toString().contains(arrNewsFile[0].urlBanner);	
-		if (!aResult) errorMsg = "Banner";
+		aResult = eImg.getAttribute("src").toString().contains(arrNewsFile[0].urlBanner);
+		if (!aResult)
+			errorMsg = "Banner";
 		resultFind = resultFind && aResult;
-		aResult = eSubContent.getText().contains(arrNewsFile[0].subContent);	
-		if (!aResult) errorMsg = "Sub Content";
+		aResult = eSubContent.getText().contains(arrNewsFile[0].subContent);
+		if (!aResult)
+			errorMsg = "Sub Content";
 		resultFind = resultFind && aResult;
-		aResult = eTime.getText().contains(arrNewsFile[0].postDate);	
-		if (!aResult) errorMsg = "Post Date";
+		aResult = eTime.getText().contains(arrNewsFile[0].postDate);
+		if (!aResult)
+			errorMsg = "Post Date";
 		resultFind = resultFind && aResult;
-		aResult = eDetail.get(1).getText().contains(arrNewsFile[0].detailContent);	
-		if (!aResult) errorMsg = "Detail Content";
+		aResult = eDetail.get(1).getText().contains(arrNewsFile[0].detailContent);
+		if (!aResult)
+			errorMsg = "Detail Content";
 		resultFind = resultFind && aResult;
 		if (resultFind) {
 			return "Display correct the news";
-		}else {
-			return "Do not display or display incorrect " + errorMsg + " of the news: " + arrNewsFile[0].subTitle;
 		}
-	}	
+		return "Not display or display incorrect " + errorMsg + " of the news: " + arrNewsFile[0].subTitle;
+	}
 	// End of dunghtt1
 }

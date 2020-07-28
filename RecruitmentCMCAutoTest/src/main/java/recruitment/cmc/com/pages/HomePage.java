@@ -1,7 +1,6 @@
 package recruitment.cmc.com.pages;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -90,59 +89,63 @@ public class HomePage extends BasePage {
 	
 	//Get status of function like/unlike
 	public boolean getStatusLikeFunction(String sLogin, String sLike) {
-		
-		boolean likeStatus = false;		
+
+		boolean likeStatus = false;
 		boolean isLogin = getStatusLogin();
-		
-		//Check alert function - case not logged in yet
-		if (sLogin.equalsIgnoreCase("notLogin")) {			
+
+		// Check alert function - case not logged in yet
+		if (sLogin.equalsIgnoreCase("notLogin")) {
 			if (isLogin) {
 				logOutThePage();
-			}			
-			//Wait and click on 1st Hot News link
+			}
+			// Wait and click on 1st Hot News link
 			waitForElementVisible(15, hotNew);
-			hotNew.findElements(By.tagName("li")).get(0).findElement(By.tagName("a")).click();			
-			//Wait and click button Like
+			hotNew.findElements(By.tagName("li")).get(0).findElement(By.tagName("a")).click();
+			// Wait and click button Like
 			waitForElementVisible(15, btnLike);
-			btnLike.click();			
-			//Wait alert and verify text
+			btnLike.click();
+			// Wait alert and verify text
 			waitForAlertVisible(15);
 			String text = driver.switchTo().alert().getText();
 			driver.switchTo().alert().accept();
 			if (text.equalsIgnoreCase("Bạn chưa đăng nhập")) {
-				likeStatus = true;			
+				likeStatus = true;
 			}
-		}else { // case logged in
+		} else { // case logged in
 			if (!isLogin) {
 				loginToPage("sauriengj6@gmail.com", "123456aA@");
 			}
-			
+
 			// Click on 1st Hot News again
 			waitForElementVisible(15, hotNew);
-			hotNew.findElements(By.tagName("li")).get(0).findElement(By.tagName("a")).click();	
-			
-			//Wait button Like
-			waitForElementVisible(15, btnLike);			
-			boolean isLike = btnLike.getText().equalsIgnoreCase("Đã thích");		
-			
+			hotNew.findElements(By.tagName("li")).get(0).findElement(By.tagName("a")).click();
+
+			// Wait button Like
+			waitForElementVisible(15, btnLike);
+			boolean isLike = btnLike.getText().equalsIgnoreCase("Đã thích");
+
 			if (sLike.equalsIgnoreCase("notLike")) {
-				if (isLike) {btnLike.click();}
+				if (isLike) {
+					btnLike.click();
+				}
 				btnLike.click();
 				if (btnLike.getText().equalsIgnoreCase("Đã thích")) {
-					likeStatus = true;	
+					likeStatus = true;
 				}
-				
-			}else { // case Liked
-				driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-				if (!isLike) {btnLike.click();}				
+			} else { // case Liked
+				// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				btnLike.isDisplayed();
+				if (!isLike) {
+					btnLike.click();
+				}
 				btnLike.click();
 				if (btnLike.getText().equalsIgnoreCase("Yêu thích")) {
-					likeStatus = true;	
-				}				
+					likeStatus = true;
+				}
 			}
-		}				
-		return likeStatus;		
-	}	
+		}
+		return likeStatus;
+	}
 	//End of dunghtt1============================================================
 
 	// Get src slide

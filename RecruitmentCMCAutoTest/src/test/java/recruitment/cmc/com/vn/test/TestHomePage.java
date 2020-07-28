@@ -38,13 +38,13 @@ public class TestHomePage extends TestTemplate {
 		assertEquals(resultTest, true, "Display wrong menu!");
 	}
 	
-	// Save case test data to object array
+	// Save case test data to object array for method verifyLikeFunction()
 	@DataProvider(name = "likedata")
 	public Object[][] likeDataprovider() throws Exception {
-		return new Object[][] { { "notLogin", "" }, { "loggedIn", "notLike" }, { "loggedIn", "liked" } };		
+		return new Object[][] { { "notLogin", "" }, { "loggedIn", "notLike" }, { "loggedIn", "liked" } };	
 	}
 	
-	//Check like function on recruitment page 
+	//Check like function on recruitment page use method likeDataprovider()
 	@Test(dataProvider = "likedata")
 	public void verifyLikeFunction(String sLogin, String sLike) throws Exception {
 		HomePage homePage = new HomePage(driver);		
