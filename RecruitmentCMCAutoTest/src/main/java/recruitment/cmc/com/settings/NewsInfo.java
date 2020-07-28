@@ -1,5 +1,9 @@
 package recruitment.cmc.com.settings;
 
+import java.util.ArrayList;
+
+import org.testng.annotations.Test;
+
 public class NewsInfo {
 	public String subTitle;
 	public String urlBanner;
@@ -8,7 +12,7 @@ public class NewsInfo {
 	public String postDate;
 	public String img;
 	public String date;
-	public String description;
+	public String title;
 	
 	public NewsInfo(String subTitle, String urlBanner, String subContent, String detailContent, String postDate) {
 		super();
@@ -19,12 +23,16 @@ public class NewsInfo {
 		this.postDate = postDate;
 
 	}
+	// nttdung
 	public NewsInfo(String img, String date, String description) {
 		super();
 
 		this.img = img;
 		this.date = date;
-		this.description = description;
+		this.title = description;
+	}
+	public NewsInfo() {
+		// TODO Auto-generated constructor stub
 	}
 	
 
@@ -76,10 +84,18 @@ public class NewsInfo {
 		return true;
 	}
 	
+	//nttdung
+	
+	public String toString1() {
+		return "NewsInfo [img=" + img + ", date=" + date + ", title=" + title + "]";
+	}
+	
 	@Override
 	public String toString() {
 		return "NewsInfo [subTitle=" + subTitle + ", urlBanner=" + urlBanner + ", subContent=" + subContent
 				+ ", detailContent=" + detailContent + ", postDate=" + postDate + "]";
 	}
 	
+
+
 }

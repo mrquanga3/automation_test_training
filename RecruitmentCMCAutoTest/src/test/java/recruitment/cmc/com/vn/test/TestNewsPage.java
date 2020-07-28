@@ -2,7 +2,8 @@ package recruitment.cmc.com.vn.test;
 
 import static org.testng.Assert.assertEquals;
 
-import org.testng.annotations.DataProvider;
+import java.util.ArrayList;
+
 import org.testng.annotations.Test;
 
 import recruitment.cmc.com.pages.NewsPage;
@@ -26,28 +27,28 @@ public class TestNewsPage extends TestTemplate {
 		NewsPage newsPage = new NewsPage(driver);
 		assertEquals("Yêu thích", newsPage.pressUnLikeButtonLogged());
 	}	
-	
-	// Begin of dunghtt1	
-	// Save case test data to object array
-	@DataProvider(name = "newslistdata")
-	public NewsInfo[] newsListDataprovider() throws Exception {
-		NewsPage newsP = new NewsPage(driver);				
-		return newsP.getListNewsFromFile();
+	@Test
+	public void verifyDisplayListOfNews() throws Exception{				
+		  NewsPage newsP = new NewsPage(driver);		 
+		  boolean resultTest = newsP.getStatusOfNewsList(); 
+		  assertEquals(resultTest, true);		 
 	}
 	
-	//Verify display list of the News
-	@Test(dataProvider = "newslistdata")
-	public void verifyDisplayListOfNews(NewsInfo sNews) throws Exception{				
-		  NewsPage newsP = new NewsPage(driver);
-		  String resultTest = newsP.getStatusOfNewsList(sNews.subTitle, sNews.urlBanner, sNews.subContent, sNews.detailContent, sNews.postDate); 
-		  assertEquals(resultTest, "Display correct the news");		 
-	}
-	//Verify display the detail of the News
 	@Test
 	public void verifyDisplayDetailOfNews() throws Exception{				
 		  NewsPage newsP = new NewsPage(driver);		 
-		  String resultTest = newsP.getStatusDetailOfNews(); 
-		  assertEquals(resultTest, "Display correct the news");		 
+		  boolean resultTest = newsP.getStatusDetailOfNews(); 
+		  assertEquals(resultTest, true);		 
 	}
-	// End of dunghtt1
+	
+	@Test
+	public void verifyRecentNews() throws Exception {
+		NewsPage rn = new NewsPage(driver);
+		boolean resultTest = rn.getRecentNews();
+		ArrayList<NewsInfo> vOutput = rn.getFileListRecentNews();
+		for (NewsInfo output : vOutput) {
+			assertEquals(resultTest, output);
+
+		}
+	}
 }
