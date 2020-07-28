@@ -13,12 +13,11 @@ public class TestRecruiments extends TestTemplate {
 		assertEquals(tRec.isHover(), true);
 	}
 
-	@Test (dependsOnMethods={"testHoverRec"})
-	
+	@Test(dependsOnMethods = { "testHoverRec" })
+
 	public void testHoverAndClickRec() {
 		Recruitments tHaC = new Recruitments(driver);
 		String text = tHaC.hoverAndClick();
 		assertEquals(text.toUpperCase(), "Môi trường làm việc".toUpperCase());
-
 	}
 }
