@@ -149,7 +149,7 @@ public class HomePage extends BasePage {
 	//End of dunghtt1============================================================
 
 	// Get src slide
-	public List<WebElement> EnnoughSlide() {
+	public List<WebElement> ennoughSlide() {
 		// lay list 3 anh hien thi tren slide
 		List<WebElement> listElement = driver
 				.findElements(By.cssSelector(".home-page-slider .carousel-item .mask-banner img"));
@@ -167,18 +167,24 @@ public class HomePage extends BasePage {
 	}
 
 //	Next slide
-	public void NextSlide() {
+	public void nextSlide() {
+		driver.findElement(By.xpath("//*[@id=\"carousel-example-generic\"]/a[2]")).click();
+		if (slidePageActive1.getAttribute("src") != slidePageActive2.getAttribute("src")) {
+			System.out.println(slidePageActive1.getAttribute("src"));
+		} else {
+			System.out.println("Next fail");
+		}
+		driver.findElement(By.xpath("//*[@id=\"carousel-example-generic\"]/a[2]")).click();
 		driver.findElement(By.xpath("//*[@id=\"carousel-example-generic\"]/a[2]")).click();
 		if (slidePageActive1.getAttribute("src") != slidePageActive2.getAttribute("src")) {
 			System.out.println("Next successfull");
 		} else {
 			System.out.println("Next fail");
 		}
-		driver.findElement(By.xpath("//*[@id=\"carousel-example-generic\"]/a[2]")).click();
 	}
 
 	// Back slide
-	public void BackSlide() {
+	public void backSlide() {
 		driver.findElement(By.xpath("//*[@id=\"carousel-example-generic\"]/a[1]/span[1]")).click();
 		if (slidePageActive1.getAttribute("src") != slidePageActive3.getAttribute("src")) {
 			System.out.println("Back successfull");

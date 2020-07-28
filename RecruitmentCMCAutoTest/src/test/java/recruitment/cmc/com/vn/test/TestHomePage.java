@@ -66,21 +66,21 @@ public class TestHomePage extends TestTemplate {
 	}
 	
 	@Test
-	public void TestEnoughSlide() {
-		HomePage homepag = new HomePage(driver);
-		homepag.EnnoughSlide();
-		assertEquals(homepag.EnnoughSlide().size(), 3);
+	public void testEnoughSlide() {
+		HomePage homepage = new HomePage(driver);
+		homepage.ennoughSlide();
+		assertEquals(homepage.ennoughSlide().size(), 3);
 	}
 	
 	@Test
-	public void TestNextSlide() {
-		HomePage homepag = new HomePage(driver);
-		homepag.NextSlide();
+	public void testNextSlide() {
+		HomePage homepage = new HomePage(driver);
+		homepage.nextSlide();
 	}
 	
 	@Test
-	public void TestBackSlide() {
-		HomePage homepag = new HomePage(driver);
-		homepag.BackSlide();
+	public void testBackSlide() {
+		HomePage homepage = new HomePage(driver);
+		homepage.backSlide();
 	}
 }
