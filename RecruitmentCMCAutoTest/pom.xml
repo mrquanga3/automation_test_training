@@ -15,8 +15,8 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M5</version>
 				<configuration>
-					<parallel>methods</parallel>
-					<threadCount>10</threadCount>
+<!-- 					<parallel>methods</parallel>
+					<threadCount>3</threadCount> -->
 					<reportsDirectory>C:/test-reports/${timestamp}</reportsDirectory>
 
 					<!-- Suite testng xml file to consider for test execution -->
