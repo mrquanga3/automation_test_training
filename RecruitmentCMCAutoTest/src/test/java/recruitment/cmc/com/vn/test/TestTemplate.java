@@ -1,5 +1,6 @@
 package recruitment.cmc.com.vn.test;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import org.openqa.selenium.WebDriver;
@@ -8,20 +9,27 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 
 public class TestTemplate {
-	BrowserSetting bs;
+	static BrowserSetting bs;
+	static ArrayList<WebDriver> drivers = new ArrayList<WebDriver>();
 	WebDriver driver;
 
 	@BeforeMethod(alwaysRun = true)
 	public void setup() throws Exception {
 		bs = new BrowserSetting();
-		driver = bs.BrowserSettings();
+		WebDriver driver_temp = bs.BrowserSettings();
+		driver = driver_temp;
+		drivers.add(driver_temp);
 	}
 
 	@AfterMethod(alwaysRun = true)
 	public void tearnDown() {
-		//if (driver != null)
-		//	driver.quit();
-		//driver = null;
+		for (WebDriver webDriver : drivers) {
+			//webDriver.quit();
+		}
+
+		// if (driver != null)
+		// driver.quit();
+		// driver = null;
 		// Set<String> handles = driver.getWindowHandles();
 		// for (String handle : handles) {
 		// driver.switchTo().window(handle);
@@ -32,6 +40,9 @@ public class TestTemplate {
 
 	@AfterSuite
 	public void tearnDownSuite() {
-		driver.quit();
+		// driver.quit();
+		for (WebDriver webDriver : drivers) {
+			webDriver.quit();
+		}
 	}
 }

@@ -11,16 +11,24 @@ import recruitment.cmc.com.settings.NewsInfo;
 public class TestNewsPage extends TestTemplate {
 	static NewsPage newsPage;
 
-	/*
-	 * @Test public void testLikeNotLogged() { newsPage = new NewsPage(driver);
-	 * assertEquals("Bạn chưa đăng nhập", newsPage.pressLikeButton()); }
-	 * 
-	 * @Test public void testLikeLogged() { newsPage = new NewsPage(driver);
-	 * assertEquals("Đã thích", newsPage.pressLikeButtonLogged()); }
-	 * 
-	 * @Test public void testUnLikeLogged() { newsPage = new NewsPage(driver);
-	 * assertEquals("Yêu thích", newsPage.pressUnLikeButtonLogged()); }
-	 */
+	@Test
+	public void testLikeNotLogged() {
+		newsPage = new NewsPage(driver);
+		assertEquals("Bạn chưa đăng nhập", newsPage.pressLikeButton());
+	}
+
+	@Test
+	public void testLikeLogged() {
+		newsPage = new NewsPage(driver);
+		assertEquals("Đã thích", newsPage.pressLikeButtonLogged());
+	}
+
+	@Test
+	public void testUnLikeLogged() {
+		newsPage = new NewsPage(driver);
+		assertEquals("Yêu thích", newsPage.pressUnLikeButtonLogged());
+	}
+
 	// Begin of dunghtt1
 	// Save case test data to object array
 	@DataProvider(name = "newslistdata")
