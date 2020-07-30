@@ -15,6 +15,14 @@ import recruitment.cmc.com.settings.URL;
 
 
 public class NewsPage extends BasePage {
+	/*
+	 * @FindBy(xpath="(//li[@class='nav-item']//a[@href='/tin-tuc?lang=vi'])[3]")
+	 * WebElement news3;
+	 * 
+	 * @FindBy(xpath="(//li[@class='nav-item']//a[@href='/tin-tuc?lang=vi'])[2]")
+	 * WebElement news2;
+	 */
+	
 	@FindBy(xpath = "(//li[@class='nav-item']//a[@href='/tin-tuc?lang=vi'])[2]")
 	WebElement buttonNews;
 
@@ -69,24 +77,21 @@ public class NewsPage extends BasePage {
 	
 	public String pressLikeButtonLogged() {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		BasePage basepage = new BasePage(driver);
-		basepage.login();
+		login();
 		buttonNews.click();
 		news.click();
-		buttonLike.isDisplayed();
+		//buttonLike.isDisplayed();
 		if(buttonLike.getText().equalsIgnoreCase("Yêu thích")) {
 			buttonLike.click();
 			wait.until(ExpectedConditions.elementToBeClickable(buttonLike));
 			return buttonLike.getText();
-		}else {
-			return buttonLike.getText();
 		}
+			return buttonLike.getText();
 	}
 	
 	public String pressUnLikeButtonLogged() {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		BasePage basepage = new BasePage(driver);
-		basepage.login();
+		login();
 		buttonNews.click();
 		news.click();
 		buttonLike.isDisplayed();

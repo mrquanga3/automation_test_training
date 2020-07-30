@@ -9,45 +9,45 @@ import recruitment.cmc.com.pages.NewsPage;
 import recruitment.cmc.com.settings.NewsInfo;
 
 public class TestNewsPage extends TestTemplate {
-	@Test 
+
+	@Test
 	public void testLikeNotLogged() {
 		NewsPage newsPage = new NewsPage(driver);
-		assertEquals("Bạn chưa đăng nhập", newsPage.pressLikeButton());
+		assertEquals(newsPage.pressLikeButton(), "Bạn chưa đăng nhập");
 	}
 
-	@Test 
+	@Test
 	public void testLikeLogged() {
 		NewsPage newsPage = new NewsPage(driver);
-		assertEquals("Đã thích", newsPage.pressLikeButtonLogged());
+		assertEquals(newsPage.pressLikeButtonLogged(), "Đã thích");
 	}
-	
-	@Test 
+
+	@Test
 	public void testUnLikeLogged() {
 		NewsPage newsPage = new NewsPage(driver);
-		assertEquals("Yêu thích", newsPage.pressUnLikeButtonLogged());
-	}	
-	
-	// Begin of dunghtt1	
-	// Save case test data to object array
-	@DataProvider(name = "newslistdata")
-	public NewsInfo[] newsListDataprovider() throws Exception {
-		NewsPage newsP = new NewsPage(driver);				
-		return newsP.getListNewsFromFile();
+		assertEquals(newsPage.pressUnLikeButtonLogged(), "Yêu thích");
 	}
-	
-	//Verify display list of the News
-	@Test(dataProvider = "newslistdata")
-	public void verifyDisplayListOfNews(NewsInfo sNews) throws Exception{				
-		  NewsPage newsP = new NewsPage(driver);
-		  String resultTest = newsP.getStatusOfNewsList(sNews.subTitle, sNews.urlBanner, sNews.subContent, sNews.detailContent, sNews.postDate); 
-		  assertEquals(resultTest, "Display correct the news");		 
-	}
-	//Verify display the detail of the News
-	@Test
-	public void verifyDisplayDetailOfNews() throws Exception{				
-		  NewsPage newsP = new NewsPage(driver);		 
-		  String resultTest = newsP.getStatusDetailOfNews(); 
-		  assertEquals(resultTest, "Display correct the news");		 
-	}
+
+	/*
+	 * // Begin of dunghtt1 // Save case test data to object array
+	 * 
+	 * @DataProvider(name = "newslistdata") public NewsInfo[] newsListDataprovider()
+	 * throws Exception { NewsPage newsP = new NewsPage(driver); return
+	 * newsP.getListNewsFromFile(); }
+	 * 
+	 * //Verify display list of the News
+	 * 
+	 * @Test(dataProvider = "newslistdata") public void
+	 * verifyDisplayListOfNews(NewsInfo sNews) throws Exception{ NewsPage newsP =
+	 * new NewsPage(driver); String resultTest =
+	 * newsP.getStatusOfNewsList(sNews.subTitle, sNews.urlBanner, sNews.subContent,
+	 * sNews.detailContent, sNews.postDate); assertEquals(resultTest,
+	 * "Display correct the news"); } //Verify display the detail of the News
+	 * 
+	 * @Test public void verifyDisplayDetailOfNews() throws Exception{ NewsPage
+	 * newsP = new NewsPage(driver); String resultTest =
+	 * newsP.getStatusDetailOfNews(); assertEquals(resultTest,
+	 * "Display correct the news"); }
+	 */
 	// End of dunghtt1
 }
