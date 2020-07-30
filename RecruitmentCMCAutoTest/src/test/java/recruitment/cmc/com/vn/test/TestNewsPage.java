@@ -14,23 +14,23 @@ public class TestNewsPage extends TestTemplate {
 	@Test
 	public void testLikeNotLogged() {
 		newsPage = new NewsPage(driver);
-		assertEquals("Bạn chưa đăng nhập", newsPage.pressLikeButton());
+		assertEquals(newsPage.pressLikeButton(), "Bạn chưa đăng nhập");
 	}
 
 	@Test
 	public void testLikeLogged() {
 		newsPage = new NewsPage(driver);
-		assertEquals("Đã thích", newsPage.pressLikeButtonLogged());
+		assertEquals(newsPage.pressLikeButtonLogged(), "Đã thích");
 	}
 
 	@Test
 	public void testUnLikeLogged() {
 		newsPage = new NewsPage(driver);
-		assertEquals("Yêu thích", newsPage.pressUnLikeButtonLogged());
+		assertEquals(newsPage.pressUnLikeButtonLogged(), "Yêu thích");
 	}
 
-	// Begin of dunghtt1
-	// Save case test data to object array
+	// Begin of dunghtt1 // Save case test data to object array
+
 	@DataProvider(name = "newslistdata")
 	public NewsInfo[] newsListDataprovider() throws Exception {
 		newsPage = new NewsPage(driver);
@@ -38,6 +38,7 @@ public class TestNewsPage extends TestTemplate {
 	}
 
 	// Verify display list of the News
+
 	@Test(dataProvider = "newslistdata")
 	public void verifyDisplayListOfNews(NewsInfo sNews) throws Exception {
 		newsPage = new NewsPage(driver);
@@ -47,11 +48,13 @@ public class TestNewsPage extends TestTemplate {
 	}
 
 	// Verify display the detail of the News
+
 	@Test
 	public void verifyDisplayDetailOfNews() throws Exception {
 		newsPage = new NewsPage(driver);
 		String resultTest = newsPage.getStatusDetailOfNews();
 		assertEquals(resultTest, "Display correct the news");
 	}
+
 	// End of dunghtt1
 }
