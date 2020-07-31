@@ -28,14 +28,17 @@ public class TestHomePage extends TestTemplate {
 
 	// Save menu list to object array
 	@DataProvider(name = "menudata")
-	public Object[][] dataFromDataprovider(Method method) throws Exception {
-		HomePage homePage = new HomePage(drivers.get(method.getName()));
-		return homePage.getDataFromWeb();
+	public Object[][] dataFromDataprovider() throws Exception {
+		WebDriver tempDriver = this.createTempDriver();
+		HomePage homePage = new HomePage(tempDriver);
+		Object[][] data = homePage.getDataFromWeb();
+		tempDriver.quit();
+		return data;
 	}
 
 	// Check displaying the menus on the Job page
-	@Test(dataProvider = "menudata")
 
+	@Test(dataProvider = "menudata")
 	public void verifyMenus(String menu, String url, Method method) throws Exception {
 		HomePage homePage = new HomePage(drivers.get(method.getName()));
 		Object[][] arrMns = homePage.getDataFromFile();
