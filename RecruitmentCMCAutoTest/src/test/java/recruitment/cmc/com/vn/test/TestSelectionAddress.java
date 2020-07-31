@@ -2,6 +2,8 @@ package recruitment.cmc.com.vn.test;
 
 import static org.testng.Assert.assertNotEquals;
 
+import java.lang.reflect.Method;
+
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -30,13 +32,14 @@ public class TestSelectionAddress extends TestTemplate {
 //
 //	}
 	@Test
-	public void clickAll() {
-		SelectionAdress selectionAdress = new SelectionAdress(driver);
+	public void clickAll(Method method) {
+		SelectionAdress selectionAdress = new SelectionAdress(drivers.get(method.getName()));
 		selectionAdress.allAdress();
 	}
+
 	@Test
-	public void Click1Nganhnghe() {
-		SelectionAdress selectionAdress = new SelectionAdress(driver);
-		//selectionAdress.ClickOneNN();
+	public void Click1Nganhnghe(Method method) {
+		SelectionAdress selectionAdress = new SelectionAdress(drivers.get(method.getName()));
+		// selectionAdress.ClickOneNN();
 	}
 }

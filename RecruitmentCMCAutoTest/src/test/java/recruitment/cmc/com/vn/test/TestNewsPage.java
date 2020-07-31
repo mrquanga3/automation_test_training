@@ -5,6 +5,8 @@ import static org.testng.Assert.assertEquals;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
+
 import recruitment.cmc.com.pages.NewsPage;
 import recruitment.cmc.com.settings.NewsInfo;
 
@@ -12,36 +14,36 @@ public class TestNewsPage extends TestTemplate {
 	static NewsPage newsPage;
 
 	@Test
-	public void testLikeNotLogged() {
-		newsPage = new NewsPage(driver);
+	public void testLikeNotLogged(Method method) {
+		newsPage = new NewsPage(drivers.get(method.getName()));
 		assertEquals(newsPage.pressLikeButton(), "Bạn chưa đăng nhập");
 	}
 
 	@Test
-	public void testLikeLogged() {
-		newsPage = new NewsPage(driver);
+	public void testLikeLogged(Method method) {
+		newsPage = new NewsPage(drivers.get(method.getName()));
 		assertEquals(newsPage.pressLikeButtonLogged(), "Đã thích");
 	}
 
 	@Test
-	public void testUnLikeLogged() {
-		newsPage = new NewsPage(driver);
+	public void testUnLikeLogged(Method method) {
+		newsPage = new NewsPage(drivers.get(method.getName()));
 		assertEquals(newsPage.pressUnLikeButtonLogged(), "Yêu thích");
 	}
 
 	// Begin of dunghtt1 // Save case test data to object array
 
 	@DataProvider(name = "newslistdata")
-	public NewsInfo[] newsListDataprovider() throws Exception {
-		newsPage = new NewsPage(driver);
+	public NewsInfo[] newsListDataprovider(Method method) throws Exception {
+		newsPage = new NewsPage(drivers.get(method.getName()));
 		return newsPage.getListNewsFromFile();
 	}
 
 	// Verify display list of the News
 
 	@Test(dataProvider = "newslistdata")
-	public void verifyDisplayListOfNews(NewsInfo sNews) throws Exception {
-		newsPage = new NewsPage(driver);
+	public void verifyDisplayListOfNews(NewsInfo sNews, Method method) throws Exception {
+		newsPage = new NewsPage(drivers.get(method.getName()));
 		String resultTest = newsPage.getStatusOfNewsList(sNews.subTitle, sNews.urlBanner, sNews.subContent,
 				sNews.detailContent, sNews.postDate);
 		assertEquals(resultTest, "Display correct the news");
@@ -50,8 +52,8 @@ public class TestNewsPage extends TestTemplate {
 	// Verify display the detail of the News
 
 	@Test
-	public void verifyDisplayDetailOfNews() throws Exception {
-		newsPage = new NewsPage(driver);
+	public void verifyDisplayDetailOfNews(Method method) throws Exception {
+		newsPage = new NewsPage(drivers.get(method.getName()));
 		String resultTest = newsPage.getStatusDetailOfNews();
 		assertEquals(resultTest, "Display correct the news");
 	}

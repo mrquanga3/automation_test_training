@@ -1,48 +1,31 @@
 package recruitment.cmc.com.vn.test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import java.lang.reflect.Method;
 
 public class TestTemplate {
 	static BrowserSetting bs;
-	static ArrayList<WebDriver> drivers = new ArrayList<WebDriver>();
-	WebDriver driver;
+	// static ArrayList<WebDriver> drivers = new ArrayList<WebDriver>();
+	public HashMap<String, WebDriver> drivers = new HashMap<String, WebDriver>();
 
 	@BeforeMethod(alwaysRun = true)
-	public void setup() throws Exception {
+	public void setup(Method method) throws Exception {
 		bs = new BrowserSetting();
 		WebDriver driver_temp = bs.BrowserSettings();
-		driver = driver_temp;
-		drivers.add(driver_temp);
+		drivers.put(method.getName(), driver_temp);
 	}
 
 	@AfterMethod(alwaysRun = true)
-	public void tearnDown() {
-		for (WebDriver webDriver : drivers) {
-			//webDriver.quit();
-		}
-
-		// if (driver != null)
-		// driver.quit();
-		// driver = null;
-		// Set<String> handles = driver.getWindowHandles();
-		// for (String handle : handles) {
-		// driver.switchTo().window(handle);
-		// driver.close();
-		// }
-		// driver.close();
-	}
-
-	@AfterSuite
-	public void tearnDownSuite() {
-		// driver.quit();
-		for (WebDriver webDriver : drivers) {
-			webDriver.quit();
-		}
+	public void tearnDown(Method result) {
+		WebDriver driver = drivers.get(result.getName());
+		driver.close();
 	}
 }
