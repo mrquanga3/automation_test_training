@@ -5,6 +5,7 @@ import static org.testng.Assert.assertNotEquals;
 
 import java.lang.reflect.Method;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -66,6 +67,7 @@ public class TestHomePage extends TestTemplate {
 	@Test(priority = 2)
 	public void testLogOut(Method method) {
 		HomePage tlgOut = new HomePage(drivers.get(method.getName()));
+		tlgOut.login();
 		assertNotEquals(tlgOut.logOut(), "TUNGTHSE02891");
 	}
 

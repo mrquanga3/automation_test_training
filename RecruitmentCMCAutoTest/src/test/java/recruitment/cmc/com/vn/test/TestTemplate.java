@@ -16,6 +16,11 @@ public class TestTemplate {
 	// static ArrayList<WebDriver> drivers = new ArrayList<WebDriver>();
 	public HashMap<String, WebDriver> drivers = new HashMap<String, WebDriver>();
 
+	public WebDriver createTempDriver() throws Exception {
+		bs = new BrowserSetting();
+		return bs.BrowserSettings();
+	}
+
 	@BeforeMethod(alwaysRun = true)
 	public void setup(Method method) throws Exception {
 		bs = new BrowserSetting();
@@ -27,5 +32,6 @@ public class TestTemplate {
 	public void tearnDown(Method result) {
 		WebDriver driver = drivers.get(result.getName());
 		driver.close();
+		drivers.remove(result.getName());
 	}
 }
