@@ -19,8 +19,6 @@ public class NewsPage extends BasePage {
 	@FindBy(xpath = "(//li[@class='nav-item']//a[@href='/tin-tuc?lang=vi'])[2]")
 	WebElement buttonNews;
 
-	// @FindBy(xpath = "//a[normalize-space()='4 Ưu tiên của CFO trong năm 2020 cho
-	// nền tảng tài chính doanh nghiệp vững chắc']")
 	@FindBy(xpath = "(//i[@class='fa fa-angle-double-right'])[1]")
 	WebElement news;
 

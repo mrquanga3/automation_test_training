@@ -13,10 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
-	WebDriver driver;
-	
-	@FindAll(@FindBy(xpath = "//div[@class='col-lg-10']/ul/li/a"))
-	List<WebElement> allMenus;
+	WebDriver driver;	
 	
 	@FindBy(xpath = "//li[@class='nav-item work']//a[@class='btn-log login-portal']")
 	WebElement buttonLogin;
@@ -50,6 +47,9 @@ public class BasePage {
 	
 	@FindBy(id="btn-like-fb")
 	WebElement btnLike;
+	
+	@FindBy(id="isLike")
+	WebElement statusLike;
 	
 	//End of Dunghtt1
 	
@@ -97,7 +97,7 @@ public class BasePage {
 		nextPass.click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		return buttonConfirm.getText();
-	}
+	}	
 
 	public String logOut() {
 		Actions action = new Actions(driver);

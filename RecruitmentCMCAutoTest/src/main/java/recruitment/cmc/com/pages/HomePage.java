@@ -1,10 +1,12 @@
 package recruitment.cmc.com.pages;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import recruitment.cmc.com.settings.Constant;
@@ -16,8 +18,10 @@ public class HomePage extends BasePage {
 	public HomePage(WebDriver driver) {
 		super(driver);
 	}
-
+	
+	@FindAll(@FindBy(xpath = "//div[@class='col-lg-10']/ul/li"))
 	List<WebElement> allMenus;	
+
 	@FindBy(xpath = "/html/body/div[4]/section/section/div/div/div[1]/div[2]/img")
 	WebElement slidePageActive1;
 	
@@ -39,7 +43,7 @@ public class HomePage extends BasePage {
 
 	// Get the number of menus on the job page - From web
 	public int getNumberMenuFromWeb() throws Exception {
-		int nummenu = allMenus.size();
+		int nummenu =allMenus.size();
 		return nummenu;
 	}
 
@@ -49,52 +53,43 @@ public class HomePage extends BasePage {
 		return ExcelUtils.getTotalRow();
 	}
 
-	// Create object array to store data from file excel
+	// Create object array (menu, url, idMenu) to store data from file excel 
 	public Object[][] getDataFromFile() throws Exception {
 		ExcelUtils.setExcelFile(URL.File_MenuData, "Sheet1");
 		int rowCount = ExcelUtils.getTotalRow();
-		Object[][] object = new Object[rowCount][2];
+		Object[][] object = new Object[rowCount][3];
 		for (int i = 0; i < rowCount; i++) {
 			object[i][0] = ExcelUtils.getCellData(i + 1, 1);
 			object[i][1] = ExcelUtils.getCellData(i + 1, 2);
+			object[i][2] = i;
 		}
 		return object;
-	}
-
-	// Create object array to store data from web
-	public Object[][] getDataFromWeb() throws Exception {
-		int rowCount = allMenus.size();
-		Object[][] object = new Object[rowCount][2];
-		for (int i = 0; i < rowCount; i++) {
-			object[i][0] = allMenus.get(i).getText();
-			String strUrl = allMenus.get(i).getAttribute("href");
-			if (strUrl == null)
-				strUrl = "";
-			object[i][1] = strUrl;
-		}
-		return object;
-	}
+	}	
 
 	// Check if the menu in the web array exists in the file array
-	public boolean compareMenuInFile(String menu, String url, Object[][] arrFile) {
-		int arrlen = arrFile.length;
-		for (int i = 0; i < arrlen; i++) {
-			if ((arrFile[i][0].toString().equalsIgnoreCase(menu)) && (arrFile[i][1].toString().equalsIgnoreCase(url))) {
-				//System.out.println("arrFile=" + arrFile + "url=" + url + "=" + arrFile[i][0].toString().equalsIgnoreCase(menu));
-				return true;
-			}
+	public boolean compareMenuInFile(String menu, String url, int idMenu) {
+		
+		String wMenu = allMenus.get(idMenu).findElement(By.tagName("a")).getText();
+		String wUrl = allMenus.get(idMenu).findElement(By.tagName("a")).getAttribute("href");
+		if (wUrl == null)
+			wUrl = "";
+
+		if ((wMenu.toString().equalsIgnoreCase(menu)) && (wUrl.toString().equalsIgnoreCase(url))) {
+			// System.out.println("arrFile=" + arrFile + "url=" + url + "=" +
+			// arrFile[i][0].toString().equalsIgnoreCase(menu));
+			return true;
 		}
 		return false;
 	}
 	
 	//Get status of function like/unlike
-	public boolean getStatusLikeFunction(String sLogin, String sLike) {
+	public boolean getStatusLikeFunction(String caseLogin, String caseLike) {
 
 		boolean likeStatus = false;
 		boolean isLogin = getStatusLogin();
 
 		// Check alert function - case not logged in yet
-		if (sLogin.equalsIgnoreCase("notLogin")) {
+		if (caseLogin.equalsIgnoreCase("notLogin")) {
 			if (isLogin) {
 				logOutThePage();
 			}
@@ -120,27 +115,33 @@ public class HomePage extends BasePage {
 			waitForElementVisible(15, hotNew);
 			hotNew.findElements(By.tagName("li")).get(0).findElement(By.tagName("a")).click();
 
-			// Wait button Like
-			waitForElementVisible(15, btnLike);
+			// Wait button Like load true value
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);			
 			boolean isLike = btnLike.getText().equalsIgnoreCase("Đã thích");
 
-			if (sLike.equalsIgnoreCase("notLike")) {
-				if (isLike) {
+			if (caseLike.equalsIgnoreCase("notLike")) { // case is not Liked				
+				if (isLike) { 
 					btnLike.click();
+					driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);					
 				}
+				// => click to change text = Da thich
 				btnLike.click();
-				if (btnLike.getText().equalsIgnoreCase("Đã thích")) {
-					likeStatus = true;
+				driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+				isLike = btnLike.getText().equalsIgnoreCase("Đã thích");				
+				if (isLike) {
+					likeStatus = true;					
 				}
-			} else { // case Liked
-				// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-				btnLike.isDisplayed();
+			} else { // case is Liked 				
 				if (!isLike) {
 					btnLike.click();
+					driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);					
 				}
+				//=> click to change text = Yeu thich
 				btnLike.click();
-				if (btnLike.getText().equalsIgnoreCase("Yêu thích")) {
-					likeStatus = true;
+				driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+				boolean isNotLike = btnLike.getText().equalsIgnoreCase("Yêu thích");				
+				if (isNotLike) {
+					likeStatus = true;					
 				}
 			}
 		}
