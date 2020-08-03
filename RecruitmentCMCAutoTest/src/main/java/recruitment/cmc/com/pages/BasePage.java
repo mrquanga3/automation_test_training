@@ -86,6 +86,7 @@ public class BasePage {
 	}	
 
 	public String login() {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		buttonLogin.click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		buttonGoogle.click();
@@ -93,6 +94,7 @@ public class BasePage {
 		accTextBox.sendKeys("tungthse02891@gmail.com");
 		nextAcc.click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.visibilityOf(passTextBox));
 		passTextBox.sendKeys("DarkLord.123");
 		nextPass.click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
