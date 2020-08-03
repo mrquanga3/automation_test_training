@@ -22,6 +22,9 @@ public class NewsPage extends BasePage {
 	@FindBy(xpath = "(//i[@class='fa fa-angle-double-right'])[1]")
 	WebElement news;
 
+	@FindBy(xpath = "(//i[@class='fa fa-angle-double-right'])[2]")
+	WebElement news1;
+	
 	@FindBy(xpath = "//button[@id='btn-like-fb']")
 	WebElement buttonLike;
 	
@@ -68,8 +71,7 @@ public class NewsPage extends BasePage {
 	
 	public String pressLikeButtonLogged() {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		BasePage basepage = new BasePage(driver);
-		basepage.login();
+		login();
 		buttonNews.click();
 		news.click();
 		buttonLike.isDisplayed();
@@ -77,17 +79,15 @@ public class NewsPage extends BasePage {
 			buttonLike.click();
 			wait.until(ExpectedConditions.elementToBeClickable(buttonLike));
 			return buttonLike.getText();
-		}else {
-			return buttonLike.getText();
 		}
+			return buttonLike.getText();
 	}
 	
 	public String pressUnLikeButtonLogged() {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		BasePage basepage = new BasePage(driver);
-		basepage.login();
+		login();
 		buttonNews.click();
-		news.click();
+		news1.click();
 		buttonLike.isDisplayed();
 		if(buttonLike.getText().equalsIgnoreCase("Đã thích")) {
 			buttonLike.click();
