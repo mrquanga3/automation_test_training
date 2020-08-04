@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Map;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,18 +15,16 @@ public class SimpleGetTest {
 	@Test
 	public void testWrongUserPassword() {
 		// Specify the base URL to the RESTful web service
-		RestAssured.baseURI = "http://giamsatkholanh.com";
+		RestAssured.baseURI = "http://dummy.restapiexample.com";
 
 		RequestSpecification httpRequest = RestAssured.given();
 
-		Response response = httpRequest.request(Method.POST, "/rest/login/");
-		String responseBody = response.getBody().asString();
+		Response response = httpRequest.request(Method.GET, "/api/v1/employee/2");
 
-		System.out.println("Response Body is =>  " + responseBody);
 		// System.out.println("Size of list => " + jsonResponse.size());
-		String error_code = response.jsonPath().getString("error_code");
-		Assert.assertEquals(error_code, "-1");
-
+		Map<String, Object> data = response.jsonPath().getMap("data");
+		System.out.print(data.get("id"));
+		System.out.print(data.get("name"));
 	}
 
 }
