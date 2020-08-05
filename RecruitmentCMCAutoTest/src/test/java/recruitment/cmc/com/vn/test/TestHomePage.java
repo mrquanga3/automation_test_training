@@ -4,6 +4,8 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 
 import java.lang.reflect.Method;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
@@ -22,9 +24,14 @@ public class TestHomePage extends TestTemplate {
 	// Check like function on recruitment page use method likeDataprovider()
 	@Test(dataProvider = "likedata")
 	public void verifyLikeFunction(String sLogin, String sLike, int index, Method method) throws Exception {
-		HomePage homePage = new HomePage(drivers.get(method.getName()));
-		boolean resultTest = homePage.getStatusLikeFunction(sLogin, sLike, index);
-		assertEquals(resultTest, true, "Function like is fail!");
+		ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
+
+
+				HomePage homePage = new HomePage(drivers.get(method.getName()));
+				boolean resultTest = homePage.getStatusLikeFunction(sLogin, sLike, index);
+				assertEquals(resultTest, true, "Function like is fail!");
+
+
 	}
 	// End of dunghtt1============================================================
 }

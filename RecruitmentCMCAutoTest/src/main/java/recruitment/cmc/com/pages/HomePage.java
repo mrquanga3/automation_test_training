@@ -1,6 +1,7 @@
 package recruitment.cmc.com.pages;
 
 import java.util.List;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -114,26 +115,34 @@ public class HomePage extends BasePage {
 
 			// Click on 1st Hot News again
 			waitForElementVisible(15, hotNew);
-			hotNew.findElements(By.tagName("li")).get(0).findElement(By.tagName("a")).click();
+			hotNew.findElements(By.tagName("li")).get(index).findElement(By.tagName("a")).click();
 
 			// Wait button Like load true value
 			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			/*
+			 * try { Thread.sleep(10000); } catch (InterruptedException e) { // TODO
+			 * Auto-generated catch block e.printStackTrace(); }
+			 */
 			boolean isLike = btnLike.getText().equalsIgnoreCase("Đã thích");
 
 			if (caseLike.equalsIgnoreCase("notLike")) { // case is not Liked
 				if (isLike) {
 					btnLike.click();
-					driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+					/*					try {
+						Thread.sleep(10000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}*/
+//					driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 				}
 				// => click to change text = Da thich
 				btnLike.click();
 				driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+				/*
+				 * try { Thread.sleep(10000); } catch (InterruptedException e) { // TODO
+				 * Auto-generated catch block e.printStackTrace(); }
+				 */
 				isLike = btnLike.getText().equalsIgnoreCase("Đã thích");
 				if (isLike) {
 					likeStatus = true;
@@ -141,11 +150,19 @@ public class HomePage extends BasePage {
 			} else { // case is Liked
 				if (!isLike) {
 					btnLike.click();
-					driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+					/*
+					 * try { Thread.sleep(10000); } catch (InterruptedException e) { // TODO
+					 * Auto-generated catch block e.printStackTrace(); }
+					 */
+					//driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 				}
 				// => click to change text = Yeu thich
 				btnLike.click();
-				driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+				/*
+				 * try { Thread.sleep(10000); } catch (InterruptedException e) { // TODO
+				 * Auto-generated catch block e.printStackTrace(); }
+				 */
+				//driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 				boolean isNotLike = btnLike.getText().equalsIgnoreCase("Yêu thích");
 				if (isNotLike) {
 					likeStatus = true;
