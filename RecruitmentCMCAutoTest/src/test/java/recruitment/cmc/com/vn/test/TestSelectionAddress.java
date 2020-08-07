@@ -33,13 +33,13 @@ public class TestSelectionAddress extends TestTemplate {
 //	}
 	@Test
 	public void clickAll(Method method) {
-		SelectionAdress selectionAdress = new SelectionAdress(drivers.get(method.getName()));
+		SelectionAdress selectionAdress = new SelectionAdress(drivers.get(TestTemplate.buildKeyForMappingDriverToTestMethod(method, new Object[] {})));
 		selectionAdress.allAdress();
 	}
 
 	@Test
 	public void Click1Nganhnghe(Method method) {
-		SelectionAdress selectionAdress = new SelectionAdress(drivers.get(method.getName()));
+		SelectionAdress selectionAdress = new SelectionAdress(drivers.get(TestTemplate.buildKeyForMappingDriverToTestMethod(method, new Object[] {})));
 		// selectionAdress.ClickOneNN();
 	}
 }

@@ -15,19 +15,19 @@ public class TestNewsPage extends TestTemplate {
 
 	@Test
 	public void testLikeNotLogged(Method method) {
-		newsPage = new NewsPage(drivers.get(method.getName()));
+		newsPage = new NewsPage(drivers.get(TestTemplate.buildKeyForMappingDriverToTestMethod(method, new Object[] {})));
 		assertEquals(newsPage.pressLikeButton(), "Bạn chưa đăng nhập");
 	}
 
 	@Test
 	public void testLikeLogged(Method method) {
-		newsPage = new NewsPage(drivers.get(method.getName()));
+		newsPage = new NewsPage(drivers.get(TestTemplate.buildKeyForMappingDriverToTestMethod(method, new Object[] {})));
 		assertEquals(newsPage.pressLikeButtonLogged(), "Đã thích");
 	}
 
 	@Test
 	public void testUnLikeLogged(Method method) {
-		newsPage = new NewsPage(drivers.get(method.getName()));
+		newsPage = new NewsPage(drivers.get(TestTemplate.buildKeyForMappingDriverToTestMethod(method, new Object[] {})));
 		assertEquals(newsPage.pressUnLikeButtonLogged(), "Yêu thích");
 	}
 
@@ -35,7 +35,7 @@ public class TestNewsPage extends TestTemplate {
 
 	@DataProvider(name = "newslistdata")
 	public NewsInfo[] newsListDataprovider(Method method) throws Exception {
-		newsPage = new NewsPage(drivers.get(method.getName()));
+		newsPage = new NewsPage(drivers.get(TestTemplate.buildKeyForMappingDriverToTestMethod(method, new Object[] {})));
 		return newsPage.getListNewsFromFile();
 	}
 
@@ -43,7 +43,7 @@ public class TestNewsPage extends TestTemplate {
 
 	@Test(dataProvider = "newslistdata")
 	public void verifyDisplayListOfNews(NewsInfo sNews, Method method) throws Exception {
-		newsPage = new NewsPage(drivers.get(method.getName()));
+		newsPage = new NewsPage(drivers.get(TestTemplate.buildKeyForMappingDriverToTestMethod(method, new Object[] {})));
 		String resultTest = newsPage.getStatusOfNewsList(sNews.subTitle, sNews.urlBanner, sNews.subContent,
 				sNews.detailContent, sNews.postDate);
 		assertEquals(resultTest, "Display correct the news");
@@ -53,7 +53,7 @@ public class TestNewsPage extends TestTemplate {
 
 	@Test
 	public void verifyDisplayDetailOfNews(Method method) throws Exception {
-		newsPage = new NewsPage(drivers.get(method.getName()));
+		newsPage = new NewsPage(drivers.get(TestTemplate.buildKeyForMappingDriverToTestMethod(method, new Object[] {})));
 		String resultTest = newsPage.getStatusDetailOfNews();
 		assertEquals(resultTest, "Display correct the news");
 	}

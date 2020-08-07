@@ -11,14 +11,14 @@ import recruitment.cmc.com.pages.Recruitments;
 public class TestRecruiments extends TestTemplate {
 	@Test
 	public void testHoverRec(Method method) {
-		Recruitments tRec = new Recruitments(drivers.get(method.getName()));
+		Recruitments tRec = new Recruitments(drivers.get(TestTemplate.buildKeyForMappingDriverToTestMethod(method, new Object[] {})));
 		assertEquals(tRec.isHover(), true);
 	}
 
 	@Test(dependsOnMethods = { "testHoverRec" })
 
 	public void testHoverAndClickRec(Method method) {
-		Recruitments tHaC = new Recruitments(drivers.get(method.getName()));
+		Recruitments tHaC = new Recruitments(drivers.get(TestTemplate.buildKeyForMappingDriverToTestMethod(method, new Object[] {})));
 		String text = tHaC.hoverAndClick();
 		assertEquals(text.toUpperCase(), "Môi trường làm việc".toUpperCase());
 	}
