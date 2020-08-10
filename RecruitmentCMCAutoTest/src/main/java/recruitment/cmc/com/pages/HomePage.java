@@ -83,7 +83,7 @@ public class HomePage extends BasePage {
 	}
 	
 	//Get status of function like/unlike
-	public boolean getStatusLikeFunction(String caseLogin, String caseLike) {
+	public boolean getStatusLikeFunction(String caseLogin, String caseLike) throws InterruptedException {
 
 		boolean likeStatus = false;
 		boolean isLogin = getStatusLogin();
@@ -113,19 +113,23 @@ public class HomePage extends BasePage {
 
 			// Click on 1st Hot News again
 			waitForElementVisible(15, hotNew);
+			Thread.sleep(10000);
 			hotNew.findElements(By.tagName("li")).get(0).findElement(By.tagName("a")).click();
-
+			Thread.sleep(10000);
 			// Wait button Like load true value
 			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);			
 			boolean isLike = btnLike.getText().equalsIgnoreCase("Đã thích");
 
 			if (caseLike.equalsIgnoreCase("notLike")) { // case is not Liked				
-				if (isLike) { 
+				if (isLike) {
+					Thread.sleep(10000);
 					btnLike.click();
 					driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);					
 				}
 				// => click to change text = Da thich
+				Thread.sleep(10000);
 				btnLike.click();
+				Thread.sleep(10000);
 				driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 				isLike = btnLike.getText().equalsIgnoreCase("Đã thích");				
 				if (isLike) {
@@ -133,12 +137,15 @@ public class HomePage extends BasePage {
 				}
 			} else { // case is Liked 				
 				if (!isLike) {
+					Thread.sleep(10000);
 					btnLike.click();
 					driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);					
 				}
 				//=> click to change text = Yeu thich
+				Thread.sleep(10000);
 				btnLike.click();
 				driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+				Thread.sleep(10000);
 				boolean isNotLike = btnLike.getText().equalsIgnoreCase("Yêu thích");				
 				if (isNotLike) {
 					likeStatus = true;					

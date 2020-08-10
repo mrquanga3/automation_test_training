@@ -19,7 +19,7 @@ public class BrowserSetting {
 	public WebDriver BrowserSettings() throws Exception {
 		WebDriver driver;
 		String browser = System.getenv("BROWSER_NAME");
-		final boolean HEADLESS = false;
+		final boolean HEADLESS = true;
 
 		if (browser == null) {
 			browser = "chrome";
@@ -30,8 +30,7 @@ public class BrowserSetting {
 			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions firefoxOptions = new FirefoxOptions();
 			if (HEADLESS) {
-				//firefoxOptions.setHeadless(true);
-				firefoxOptions.addArguments("--HEADLESS");
+				firefoxOptions.setHeadless(true);
 			}
 			driver = new FirefoxDriver(firefoxOptions);
 		}
@@ -40,8 +39,7 @@ public class BrowserSetting {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions chromeOptions = new ChromeOptions();
 			if (HEADLESS) {
-				//chromeOptions.setHeadless(true);
-				chromeOptions.addArguments("--HEADLESS");
+				chromeOptions.setHeadless(true);
 			}
 			driver = new ChromeDriver(chromeOptions);
 		}
@@ -55,8 +53,8 @@ public class BrowserSetting {
 			WebDriverManager.edgedriver().setup();
 			EdgeOptions edgeOptions = new EdgeOptions();
 			if (HEADLESS) {
-				 //edgeOptions.setHeadless(true);
-				//edgeOptions.addArguments("--HEADLESS");
+				// edgeOptions.setHeadless(true);
+				// edgeOptions.addArguments("--HEADLESS");
 			}
 			driver = new EdgeDriver(edgeOptions);
 
@@ -68,8 +66,8 @@ public class BrowserSetting {
 
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+		// driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		// driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		driver.get(BASE_URL);
 		return driver;
 	}
