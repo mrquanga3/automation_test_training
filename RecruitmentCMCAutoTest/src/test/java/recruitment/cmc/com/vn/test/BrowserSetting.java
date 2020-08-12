@@ -2,6 +2,7 @@ package recruitment.cmc.com.vn.test;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -63,7 +64,9 @@ public class BrowserSetting {
 			throw new Exception("BROWSER IS INCORRECT: " + browser + " IS NOT SUPPORTED. "
 					+ "BROWSERS ARE SUPPORTED INCLUDING: CHROME AND FIREFOX AND IE AND EDGE ");
 		}
-
+		Dimension d = new Dimension(1920, 1280);
+		// Resize current window to the set dimension
+		driver.manage().window().setSize(d);
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 		// driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
