@@ -1,4 +1,4 @@
-package dashboard.cmc.com.settings;
+package dashboard.cmc.com.vn.pojo;
 
 public class NewsInfo {
 	public String subTitle;
@@ -6,7 +6,7 @@ public class NewsInfo {
 	public String subContent;
 	public String detailContent;
 	public String postDate;
-	
+
 	public NewsInfo(String subTitle, String urlBanner, String subContent, String detailContent, String postDate) {
 		super();
 		this.subTitle = subTitle;
@@ -15,6 +15,7 @@ public class NewsInfo {
 		this.detailContent = detailContent;
 		this.postDate = postDate;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -26,6 +27,7 @@ public class NewsInfo {
 		result = prime * result + ((urlBanner == null) ? 0 : urlBanner.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -62,11 +64,11 @@ public class NewsInfo {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "NewsInfo [subTitle=" + subTitle + ", urlBanner=" + urlBanner + ", subContent=" + subContent
 				+ ", detailContent=" + detailContent + ", postDate=" + postDate + "]";
 	}
-	
+
 }

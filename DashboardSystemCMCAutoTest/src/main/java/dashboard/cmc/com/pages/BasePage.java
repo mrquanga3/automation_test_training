@@ -1,19 +1,11 @@
 package dashboard.cmc.com.pages;
 
-import static org.testng.Assert.assertEquals;
-
-import java.io.FileInputStream;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
-import dashboard.cmc.com.settings.ExcelUtils;
 
 public class BasePage {
 
@@ -37,7 +29,7 @@ public class BasePage {
 	}
 
 	public String login(String sUsername, String sPassword) {
-		WebDriverWait wait = new WebDriverWait(driver,30);
+		WebDriverWait wait = new WebDriverWait(driver, 60);
 		username.sendKeys(sUsername);
 		password.sendKeys(sPassword);
 		loginButton.click();
@@ -45,4 +37,3 @@ public class BasePage {
 		return inforButton.getText().trim();
 	}
 }
-

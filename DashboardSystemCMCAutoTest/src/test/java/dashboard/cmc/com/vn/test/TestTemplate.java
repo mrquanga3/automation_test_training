@@ -3,11 +3,12 @@ package dashboard.cmc.com.vn.test;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
-import javax.annotation.Nullable;
-
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+
+import dashboard.cmc.com.settings.Constant;
 
 public class TestTemplate {
 	static BrowserSetting bs;
@@ -16,6 +17,13 @@ public class TestTemplate {
 	public WebDriver createTempDriver() throws Exception {
 		bs = new BrowserSetting();
 		return bs.BrowserSettings();
+	}
+
+	@BeforeSuite
+	public void setupSuite() throws Exception {
+		if (Constant.USERNAME == null || Constant.PASSWORD == null) {
+			throw new Exception("USERNAME or PASSWORD is not set before runing test !!!");
+		}
 	}
 
 	public static String buildKeyForMappingDriverToTestMethod(Object[] paramters) {

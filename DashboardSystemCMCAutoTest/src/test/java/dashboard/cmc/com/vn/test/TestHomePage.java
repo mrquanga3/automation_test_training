@@ -6,7 +6,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import dashboard.cmc.com.pages.BasePage;
 import dashboard.cmc.com.settings.Constant;
-import dashboard.cmc.com.settings.ExcelUtils;
+import dashboard.cmc.com.vn.utils.ExcelUtils;
 
 public class TestHomePage extends TestTemplate {
 	@DataProvider(parallel = true)
@@ -17,11 +17,11 @@ public class TestHomePage extends TestTemplate {
 	}
 
 	@Test(dataProvider = "authentication")
-	public void testLogin(String sUsername, String sPassword, String fullname, Method method) {
+	public void testLogin(String username, String password, String fullname, Method method) {
 		BasePage tlg = new BasePage(drivers.get(TestTemplate
-				.buildKeyForMappingDriverToTestMethod(new Object[] { sUsername, sPassword, fullname, method })));
-		assertEquals(tlg.login(sUsername, sPassword), fullname);
-	}		
+				.buildKeyForMappingDriverToTestMethod(new Object[] { username, password, fullname, method })));
+		assertEquals(tlg.login(username, password), fullname);
+	}
 
 	@Test
 	public void testDashBoard(Method method) {
