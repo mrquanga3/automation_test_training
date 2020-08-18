@@ -1,9 +1,11 @@
 package dashboard.cmc.com.vn.test;
+
 import static org.testng.Assert.assertEquals;
 import java.lang.reflect.Method;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import dashboard.cmc.com.pages.BasePage;
+import dashboard.cmc.com.settings.Constant;
 import dashboard.cmc.com.settings.ExcelUtils;
 
 public class TestHomePage extends TestTemplate {
@@ -16,7 +18,15 @@ public class TestHomePage extends TestTemplate {
 
 	@Test(dataProvider = "authentication")
 	public void testLogin(String sUsername, String sPassword, String fullname, Method method) {
-		BasePage tlg = new BasePage(drivers.get(TestTemplate.buildKeyForMappingDriverToTestMethod(new Object[] { sUsername, sPassword, fullname, method })));
+		BasePage tlg = new BasePage(drivers.get(TestTemplate
+				.buildKeyForMappingDriverToTestMethod(new Object[] { sUsername, sPassword, fullname, method })));
 		assertEquals(tlg.login(sUsername, sPassword), fullname);
+	}		
+
+	@Test
+	public void testDashBoard(Method method) {
+		BasePage tlg = new BasePage(
+				drivers.get(TestTemplate.buildKeyForMappingDriverToTestMethod(new Object[] { method })));
+		tlg.login(Constant.USERNAME, Constant.PASSWORD);
 	}
 }
