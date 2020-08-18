@@ -1,4 +1,4 @@
-package recruitment.cmc.com.vn.test;
+package dashboard.cmc.com.vn.test;
 
 import static org.testng.Assert.assertNotEquals;
 
@@ -8,7 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import recruitment.cmc.com.pages.SelectionAdress;
+import dashboard.cmc.com.pages.SelectionAdress;
 
 public class TestSelectionAddress extends TestTemplate {
 	@DataProvider

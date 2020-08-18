@@ -1,4 +1,4 @@
-package recruitment.cmc.com.pages;
+package dashboard.cmc.com.pages;
 
 import java.util.concurrent.TimeUnit;
 

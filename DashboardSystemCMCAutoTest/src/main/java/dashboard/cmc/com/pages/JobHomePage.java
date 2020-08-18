@@ -1,4 +1,4 @@
-package recruitment.cmc.com.pages;
+package dashboard.cmc.com.pages;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -8,7 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import recruitment.cmc.com.settings.URL;
+import dashboard.cmc.com.settings.URL;
 
 public class JobHomePage {
 	

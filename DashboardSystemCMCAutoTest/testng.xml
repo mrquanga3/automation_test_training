@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Default suite" guice-stage="DEVELOPMENT" parallel = "false" thread-count="3" data-provider-thread-count="3">
+<suite name="Default suite" guice-stage="DEVELOPMENT" parallel = "true" thread-count="3" data-provider-thread-count="3">
   <test name="Default test" verbose="2">
     <classes>
-      <class name="recruitment.cmc.com.vn.test.TestHomePage">
+      <class name="dashboard.cmc.com.vn.test.TestHomePage">
       </class> <!-- recruitment.cmc.com.vn.test.TestNewsPage -->
     </classes>
   </test> <!-- Default test -->

@@ -1,6 +1,6 @@
-package recruitment.cmc.com.vn.test;
+package dashboard.cmc.com.vn.test;
 
-import static recruitment.cmc.com.settings.URL.BASE_URL;
+import static dashboard.cmc.com.settings.URL.BASE_URL;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +20,7 @@ public class BrowserSetting {
 		String browser = System.getenv("BROWSER_NAME");
 		String HEADLESS_ENV = System.getenv("HEADLESS");
 		boolean HEADLESS = true;
-		if (HEADLESS_ENV.equalsIgnoreCase("0")) {
+		if ("0".equalsIgnoreCase(HEADLESS_ENV)) {
 			HEADLESS = false;
 		}
 		if (browser == null) {

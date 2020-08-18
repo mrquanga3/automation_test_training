@@ -1,4 +1,4 @@
-package recruitment.cmc.com.vn.test;
+package dashboard.cmc.com.vn.test;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package recruitment.cmc.com.settings;
+package dashboard.cmc.com.settings;
 
 public class NewsInfo {
 	public String subTitle;
